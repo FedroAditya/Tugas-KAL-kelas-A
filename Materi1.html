@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Materi1';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -355,7 +357,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -371,6 +375,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spl-sistem-persamaan-linear">1. SPL (Sistem Persamaan Linear)</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -382,6 +394,17 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tugas-eliminasi-gaussan">
 <h1>Tugas Eliminasi Gaussan<a class="headerlink" href="#tugas-eliminasi-gaussan" title="Link to this heading">#</a></h1>
+<section id="spl-sistem-persamaan-linear">
+<h2>1. SPL (Sistem Persamaan Linear)<a class="headerlink" href="#spl-sistem-persamaan-linear" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+1x_1 + 0x_2 + 0x_3 + 0x_4 + 0x_5 = 1 \\
+2x_1 + 1x_2 + 0x_3 + 0x_4 + 0x_5 = 4 \\
+0x_1 + 3x_2 + 1x_3 + 0x_4 + 0x_5 = 9 \\
+0x_1 + 0x_2 + 4x_3 + 1x_4 + 0x_5 = 16 \\
+0x_1 + 0x_2 + 0x_3 + 5x_4 + 1x_5 = 25
+\end{cases}\end{split}\]</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -438,6 +461,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spl-sistem-persamaan-linear">1. SPL (Sistem Persamaan Linear)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

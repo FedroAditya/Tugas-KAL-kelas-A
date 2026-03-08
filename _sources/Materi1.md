@@ -1,2 +1,11 @@
 # Tugas Eliminasi Gaussan
 
+## 1. SPL (Sistem Persamaan Linear)
+
+$$\begin{cases}
+1x_1 + 0x_2 + 0x_3 + 0x_4 + 0x_5 = 1 \\
+2x_1 + 1x_2 + 0x_3 + 0x_4 + 0x_5 = 4 \\
+0x_1 + 3x_2 + 1x_3 + 0x_4 + 0x_5 = 9 \\
+0x_1 + 0x_2 + 4x_3 + 1x_4 + 0x_5 = 16 \\
+0x_1 + 0x_2 + 0x_3 + 5x_4 + 1x_5 = 25
+\end{cases}$$
