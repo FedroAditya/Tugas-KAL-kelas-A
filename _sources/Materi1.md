@@ -130,3 +130,5 @@ Karena matriks sudah membentuk matriks identitas (karena sistem ini bentuknya sa
 * $x_3 = 3$
 * $x_4 = 4$
 * $x_5 = 5$
+
+![original image](https://cdn.mathpix.com/snip/images/TAixnzUs4-r8eSvTt2C6PzmxsXeEFz1Y0NCR0kqWGz8.original.fullsize.png)
