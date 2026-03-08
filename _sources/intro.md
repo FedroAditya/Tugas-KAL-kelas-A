@@ -1,4 +1,5 @@
-# Welcome to your Jupyter Book
+# Nama : Fedro Aditya Ginting
+# NIM : 250411100135
 
 This is a small sample book to give you a feel for how book content is
 structured.
