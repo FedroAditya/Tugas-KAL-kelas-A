@@ -125,3 +125,6 @@ $$
 \end{array}
 \right]
 $$
+
+## SAGE CELL
+![original image](https://cdn.mathpix.com/snip/images/q3EyFKmPej_8BdP-1PUZDw2VKU1PGpULSioEuwmCiKI.original.fullsize.png)
