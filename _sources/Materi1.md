@@ -40,10 +40,7 @@ $$
 
 ### Langkah 1: nolkan elemen di bawah pivot kolom 1
 
-Operasi baris: $R_2 \leftarrow R_2 - R_1$ 
-               $R_3 \leftarrow R_3 - R_1$ 
-               $R_4 \leftarrow R_4 - R_1$ 
-               $R_5 \leftarrow R_5 - R_1$
+Operasi baris: $R_2 \leftarrow R_2 - R_1$, $R_3 \leftarrow R_3 - R_1$, $R_4 \leftarrow R_4 - R_1$, $R_5 \leftarrow R_5 - R_1$
 
 Penjelasan:
 1. Pivot pertama ada di kolom 1 baris 1 (angka 1).
