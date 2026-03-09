@@ -381,13 +381,20 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spl-sistem-persamaan-linear">1. SPL (Sistem Persamaan Linear)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-augmented">Matriks Augmented</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-augmented">2. Matriks Augmented</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminasi-gauss-obe">3. Eliminasi Gauss (OBE)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-nolkan-elemen-di-bawah-pivot-kolom-1">Langkah 1: nolkan elemen di bawah pivot kolom 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-nolkan-elemen-di-bawah-pivot-kolom-2">Langkah 2: nolkan elemen di bawah pivot kolom 2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-nolkan-elemen-di-bawah-pivot-kolom-3">Langkah 3: nolkan elemen di bawah pivot kolom 3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-nolkan-elemen-di-bawah-pivot-kolom-4">Langkah 4: nolkan elemen di bawah pivot kolom 4</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-matriks-eselon-baris">Hasil Akhir (Matriks Eselon Baris)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-jadikan-pivot-kolom-1-menjadi-1">Langkah 1: Jadikan pivot kolom 1 menjadi 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-nolkan-elemen-di-bawah-pivot-kolom-1">Langkah 2: Nolkan elemen di bawah pivot kolom 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-jadikan-pivot-kolom-2-menjadi-1">Langkah 3: Jadikan pivot kolom 2 menjadi 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-nolkan-elemen-di-bawah-pivot-kolom-2">Langkah 4: Nolkan elemen di bawah pivot kolom 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-5-jadikan-pivot-kolom-3-menjadi-1">Langkah 5: Jadikan pivot kolom 3 menjadi 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-6-nolkan-elemen-di-bawah-pivot-kolom-3">Langkah 6: Nolkan elemen di bawah pivot kolom 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-7-jadikan-pivot-kolom-4-menjadi-1">Langkah 7: Jadikan pivot kolom 4 menjadi 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-8-nolkan-elemen-di-bawah-pivot-kolom-4">Langkah 8: Nolkan elemen di bawah pivot kolom 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-9-jadikan-pivot-kolom-5-menjadi-1">Langkah 9: Jadikan pivot kolom 5 menjadi 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-matriks-eselon-baris">Hasil Akhir (Matriks Eselon Baris)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -408,130 +415,201 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{cases}
-2x_1 + 0x_2 + 0x_3 + 0x_4 + 0x_5 = 2 \\
-3x_1 + 2x_2 + 0x_3 + 0x_4 + 0x_5 = 7 \\
-0x_1 + 4x_2 + 2x_3 + 0x_4 + 0x_5 = 14 \\
-0x_1 + 0x_2 + 5x_3 + 2x_4 + 0x_5 = 23 \\
-0x_1 + 0x_2 + 0x_3 + 6x_4 + 2x_5 = 34
+2x_1 + 3x_2 + x_3 + 4x_4 + 2x_5 = 37 \\
+x_1 + 4x_2 + 2x_3 + x_4 + 3x_5 = 34 \\
+3x_1 + x_2 + 5x_3 + 2x_4 + x_5 = 33 \\
+4x_1 + 2x_2 + 3x_3 + 5x_4 + x_5 = 42 \\
+x_1 + 5x_2 + x_3 + 3x_4 + 4x_5 = 46
 \end{cases}
 \end{split}\]</div>
 </section>
 <section id="matriks-augmented">
-<h2>Matriks Augmented<a class="headerlink" href="#matriks-augmented" title="Link to this heading">#</a></h2>
+<h2>2. Matriks Augmented<a class="headerlink" href="#matriks-augmented" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\left[\begin{array}{ccccc|c}
-2 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 \\
-3 &amp; 2 &amp; 0 &amp; 0 &amp; 0 &amp; 7 \\
-0 &amp; 4 &amp; 2 &amp; 0 &amp; 0 &amp; 14 \\
-0 &amp; 0 &amp; 5 &amp; 2 &amp; 0 &amp; 23 \\
-0 &amp; 0 &amp; 0 &amp; 6 &amp; 2 &amp; 34
-\end{array}\right]
+\left[
+\begin{array}{ccccc|c}
+2 &amp; 3 &amp; 1 &amp; 4 &amp; 2 &amp; 37 \\
+1 &amp; 4 &amp; 2 &amp; 1 &amp; 3 &amp; 34 \\
+3 &amp; 1 &amp; 5 &amp; 2 &amp; 1 &amp; 33 \\
+4 &amp; 2 &amp; 3 &amp; 5 &amp; 1 &amp; 42 \\
+1 &amp; 5 &amp; 1 &amp; 3 &amp; 4 &amp; 46
+\end{array}
+\right]
 \end{split}\]</div>
 </section>
 <section id="eliminasi-gauss-obe">
 <h2>3. Eliminasi Gauss (OBE)<a class="headerlink" href="#eliminasi-gauss-obe" title="Link to this heading">#</a></h2>
-<p><strong>Matriks Augmented Awal:</strong>
-$<span class="math notranslate nohighlight">\(
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; | &amp; 1 \\
-3 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; | &amp; 5 \\
-0 &amp; 2 &amp; 1 &amp; 0 &amp; 0 &amp; | &amp; 7 \\
-0 &amp; 0 &amp; 3 &amp; 1 &amp; 0 &amp; | &amp; 13 \\
-0 &amp; 0 &amp; 0 &amp; 4 &amp; 1 &amp; | &amp; 21
-\end{bmatrix}
-\)</span>$</p>
-<br>
-<section id="langkah-1-nolkan-elemen-di-bawah-pivot-kolom-1">
-<h3>Langkah 1: nolkan elemen di bawah pivot kolom 1<a class="headerlink" href="#langkah-1-nolkan-elemen-di-bawah-pivot-kolom-1" title="Link to this heading">#</a></h3>
-<p>Operasi baris: <span class="math notranslate nohighlight">\(R_2 \leftarrow R_2 - 3R_1\)</span></p>
-<p>Penjelasan:</p>
-<ol class="arabic simple">
-<li><p>Pivot pertama ada di kolom 1 baris 1 (angka 1).</p></li>
-<li><p>Di bawahnya (baris 2 kolom 1) ada angka 3.</p></li>
-<li><p>Kita ingin membuat elemen tersebut menjadi 0.</p></li>
-<li><p>Caranya dengan mengurangkan 3 kali baris 1 dari baris 2.</p></li>
-</ol>
+<section id="langkah-1-jadikan-pivot-kolom-1-menjadi-1">
+<h3>Langkah 1: Jadikan pivot kolom 1 menjadi 1<a class="headerlink" href="#langkah-1-jadikan-pivot-kolom-1-menjadi-1" title="Link to this heading">#</a></h3>
+<p><strong>Operasi baris:</strong> <span class="math notranslate nohighlight">\(R_1 \leftarrow \frac{1}{2}R_1\)</span></p>
+<p><strong>Penjelasan:</strong> Pivot pertama berada di baris 1, kolom 1 (angka 2). Agar mudah digunakan untuk eliminasi, kita jadikan nilainya 1 dengan mengalikan baris pertama dengan <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; | &amp; 1 \\
-0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; | &amp; 2 \\
-0 &amp; 2 &amp; 1 &amp; 0 &amp; 0 &amp; | &amp; 7 \\
-0 &amp; 0 &amp; 3 &amp; 1 &amp; 0 &amp; | &amp; 13 \\
-0 &amp; 0 &amp; 0 &amp; 4 &amp; 1 &amp; | &amp; 21
-\end{bmatrix}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 3/2 &amp; 1/2 &amp; 2 &amp; 1 &amp; 37/2 \\
+1 &amp; 4 &amp; 2 &amp; 1 &amp; 3 &amp; 34 \\
+3 &amp; 1 &amp; 5 &amp; 2 &amp; 1 &amp; 33 \\
+4 &amp; 2 &amp; 3 &amp; 5 &amp; 1 &amp; 42 \\
+1 &amp; 5 &amp; 1 &amp; 3 &amp; 4 &amp; 46 \\
+\end{array}
+\right]
 \end{split}\]</div>
-<br>
 </section>
-<section id="langkah-2-nolkan-elemen-di-bawah-pivot-kolom-2">
-<h3>Langkah 2: nolkan elemen di bawah pivot kolom 2<a class="headerlink" href="#langkah-2-nolkan-elemen-di-bawah-pivot-kolom-2" title="Link to this heading">#</a></h3>
-<p>Operasi baris: <span class="math notranslate nohighlight">\(R_3 \leftarrow R_3 - 2R_2\)</span></p>
-<p>Penjelasan:</p>
-<ol class="arabic simple">
-<li><p>Pivot kedua ada di kolom 2 baris 2 (angka 1).</p></li>
-<li><p>Di bawahnya (baris 3 kolom 2) ada angka 2.</p></li>
-<li><p>Kita ingin membuat elemen tersebut menjadi 0.</p></li>
-<li><p>Caranya dengan mengurangkan 2 kali baris 2 dari baris 3.</p></li>
-</ol>
+<section id="langkah-2-nolkan-elemen-di-bawah-pivot-kolom-1">
+<h3>Langkah 2: Nolkan elemen di bawah pivot kolom 1<a class="headerlink" href="#langkah-2-nolkan-elemen-di-bawah-pivot-kolom-1" title="Link to this heading">#</a></h3>
+<p><strong>Operasi baris:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R_2 \leftarrow R_2 - 1R_1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(R_3 \leftarrow R_3 - 3R_1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(R_4 \leftarrow R_4 - 4R_1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(R_5 \leftarrow R_5 - 1R_1\)</span></p></li>
+</ul>
+<p><strong>Penjelasan:</strong> Kita akan membuat angka di bawah pivot pertama menjadi 0. Kita operasikan baris ke-2 hingga ke-5 dengan mengurangkan kelipatan dari baris pertama.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; | &amp; 1 \\
-0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; | &amp; 2 \\
-0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; | &amp; 3 \\
-0 &amp; 0 &amp; 3 &amp; 1 &amp; 0 &amp; | &amp; 13 \\
-0 &amp; 0 &amp; 0 &amp; 4 &amp; 1 &amp; | &amp; 21
-\end{bmatrix}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 3/2 &amp; 1/2 &amp; 2 &amp; 1 &amp; 37/2 \\
+0 &amp; 5/2 &amp; 3/2 &amp; -1 &amp; 2 &amp; 31/2 \\
+0 &amp; -7/2 &amp; 7/2 &amp; -4 &amp; -2 &amp; -45/2 \\
+0 &amp; -4 &amp; 1 &amp; -3 &amp; -3 &amp; -32 \\
+0 &amp; 7/2 &amp; 1/2 &amp; 1 &amp; 3 &amp; 55/2 \\
+\end{array}
+\right]
 \end{split}\]</div>
-<br>
 </section>
-<section id="langkah-3-nolkan-elemen-di-bawah-pivot-kolom-3">
-<h3>Langkah 3: nolkan elemen di bawah pivot kolom 3<a class="headerlink" href="#langkah-3-nolkan-elemen-di-bawah-pivot-kolom-3" title="Link to this heading">#</a></h3>
-<p>Operasi baris: <span class="math notranslate nohighlight">\(R_4 \leftarrow R_4 - 3R_3\)</span></p>
-<p>Penjelasan:</p>
-<ol class="arabic simple">
-<li><p>Pivot ketiga ada di kolom 3 baris 3 (angka 1).</p></li>
-<li><p>Di bawahnya (baris 4 kolom 3) ada angka 3.</p></li>
-<li><p>Kita ingin membuat elemen tersebut menjadi 0.</p></li>
-<li><p>Caranya dengan mengurangkan 3 kali baris 3 dari baris 4.</p></li>
-</ol>
+<section id="langkah-3-jadikan-pivot-kolom-2-menjadi-1">
+<h3>Langkah 3: Jadikan pivot kolom 2 menjadi 1<a class="headerlink" href="#langkah-3-jadikan-pivot-kolom-2-menjadi-1" title="Link to this heading">#</a></h3>
+<p><strong>Operasi baris:</strong> <span class="math notranslate nohighlight">\(R_2 \leftarrow \frac{2}{5}R_2\)</span></p>
+<p><strong>Penjelasan:</strong> Lanjut ke kolom 2. Pivot ada di baris 2 (angka <span class="math notranslate nohighlight">\(5/2\)</span>). Kita kalikan baris ke-2 dengan kebalikannya yaitu <span class="math notranslate nohighlight">\(\frac{2}{5}\)</span> agar menjadi 1.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; | &amp; 1 \\
-0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; | &amp; 2 \\
-0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; | &amp; 3 \\
-0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; | &amp; 4 \\
-0 &amp; 0 &amp; 0 &amp; 4 &amp; 1 &amp; | &amp; 21
-\end{bmatrix}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 3/2 &amp; 1/2 &amp; 2 &amp; 1 &amp; 37/2 \\
+0 &amp; 1 &amp; 3/5 &amp; -2/5 &amp; 4/5 &amp; 31/5 \\
+0 &amp; -7/2 &amp; 7/2 &amp; -4 &amp; -2 &amp; -45/2 \\
+0 &amp; -4 &amp; 1 &amp; -3 &amp; -3 &amp; -32 \\
+0 &amp; 7/2 &amp; 1/2 &amp; 1 &amp; 3 &amp; 55/2 \\
+\end{array}
+\right]
 \end{split}\]</div>
-<br>
 </section>
-<section id="langkah-4-nolkan-elemen-di-bawah-pivot-kolom-4">
-<h3>Langkah 4: nolkan elemen di bawah pivot kolom 4<a class="headerlink" href="#langkah-4-nolkan-elemen-di-bawah-pivot-kolom-4" title="Link to this heading">#</a></h3>
-<p>Operasi baris: <span class="math notranslate nohighlight">\(R_5 \leftarrow R_5 - 4R_4\)</span></p>
-<p>Penjelasan:</p>
-<ol class="arabic simple">
-<li><p>Pivot keempat ada di kolom 4 baris 4 (angka 1).</p></li>
-<li><p>Di bawahnya (baris 5 kolom 4) ada angka 4.</p></li>
-<li><p>Kita ingin membuat elemen tersebut menjadi 0.</p></li>
-<li><p>Caranya dengan mengurangkan 4 kali baris 4 dari baris 5.</p></li>
-</ol>
+<section id="langkah-4-nolkan-elemen-di-bawah-pivot-kolom-2">
+<h3>Langkah 4: Nolkan elemen di bawah pivot kolom 2<a class="headerlink" href="#langkah-4-nolkan-elemen-di-bawah-pivot-kolom-2" title="Link to this heading">#</a></h3>
+<p><strong>Operasi baris:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R_3 \leftarrow R_3 + \frac{7}{2}R_2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(R_4 \leftarrow R_4 + 4R_2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(R_5 \leftarrow R_5 - \frac{7}{2}R_2\)</span></p></li>
+</ul>
+<p><strong>Penjelasan:</strong> Kita nolkan elemen pada baris 3, 4, dan 5 di kolom 2 menggunakan patokan baris ke-2 yang sudah disederhanakan.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; | &amp; 1 \\
-0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; | &amp; 2 \\
-0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; | &amp; 3 \\
-0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; | &amp; 4 \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; | &amp; 5
-\end{bmatrix}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 3/2 &amp; 1/2 &amp; 2 &amp; 1 &amp; 37/2 \\
+0 &amp; 1 &amp; 3/5 &amp; -2/5 &amp; 4/5 &amp; 31/5 \\
+0 &amp; 0 &amp; 28/5 &amp; -27/5 &amp; 4/5 &amp; -4/5 \\
+0 &amp; 0 &amp; 17/5 &amp; -23/5 &amp; 1/5 &amp; -36/5 \\
+0 &amp; 0 &amp; -8/5 &amp; 12/5 &amp; 1/5 &amp; 29/5 \\
+\end{array}
+\right]
+\end{split}\]</div>
+</section>
+<section id="langkah-5-jadikan-pivot-kolom-3-menjadi-1">
+<h3>Langkah 5: Jadikan pivot kolom 3 menjadi 1<a class="headerlink" href="#langkah-5-jadikan-pivot-kolom-3-menjadi-1" title="Link to this heading">#</a></h3>
+<p><strong>Operasi baris:</strong> <span class="math notranslate nohighlight">\(R_3 \leftarrow \frac{5}{28}R_3\)</span></p>
+<p><strong>Penjelasan:</strong> Lanjut ke kolom 3. Pivot ada di baris 3 (angka <span class="math notranslate nohighlight">\(28/5\)</span>). Kita jadikan 1 dengan mengalikannya dengan <span class="math notranslate nohighlight">\(\frac{5}{28}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 3/2 &amp; 1/2 &amp; 2 &amp; 1 &amp; 37/2 \\
+0 &amp; 1 &amp; 3/5 &amp; -2/5 &amp; 4/5 &amp; 31/5 \\
+0 &amp; 0 &amp; 1 &amp; -27/28 &amp; 1/7 &amp; -1/7 \\
+0 &amp; 0 &amp; 17/5 &amp; -23/5 &amp; 1/5 &amp; -36/5 \\
+0 &amp; 0 &amp; -8/5 &amp; 12/5 &amp; 1/5 &amp; 29/5 \\
+\end{array}
+\right]
+\end{split}\]</div>
+</section>
+<section id="langkah-6-nolkan-elemen-di-bawah-pivot-kolom-3">
+<h3>Langkah 6: Nolkan elemen di bawah pivot kolom 3<a class="headerlink" href="#langkah-6-nolkan-elemen-di-bawah-pivot-kolom-3" title="Link to this heading">#</a></h3>
+<p><strong>Operasi baris:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R_4 \leftarrow R_4 - \frac{17}{5}R_3\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(R_5 \leftarrow R_5 + \frac{8}{5}R_3\)</span></p></li>
+</ul>
+<p><strong>Penjelasan:</strong> Kita nolkan elemen pada baris 4 dan 5 di kolom ke-3 menggunakan patokan baris ke-3.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 3/2 &amp; 1/2 &amp; 2 &amp; 1 &amp; 37/2 \\
+0 &amp; 1 &amp; 3/5 &amp; -2/5 &amp; 4/5 &amp; 31/5 \\
+0 &amp; 0 &amp; 1 &amp; -27/28 &amp; 1/7 &amp; -1/7 \\
+0 &amp; 0 &amp; 0 &amp; -37/28 &amp; -2/7 &amp; -47/7 \\
+0 &amp; 0 &amp; 0 &amp; 6/7 &amp; 3/7 &amp; 39/7 \\
+\end{array}
+\right]
+\end{split}\]</div>
+</section>
+<section id="langkah-7-jadikan-pivot-kolom-4-menjadi-1">
+<h3>Langkah 7: Jadikan pivot kolom 4 menjadi 1<a class="headerlink" href="#langkah-7-jadikan-pivot-kolom-4-menjadi-1" title="Link to this heading">#</a></h3>
+<p><strong>Operasi baris:</strong> <span class="math notranslate nohighlight">\(R_4 \leftarrow -\frac{28}{37}R_4\)</span></p>
+<p><strong>Penjelasan:</strong> Pivot ke-4 ada di baris 4 (angka <span class="math notranslate nohighlight">\(-37/28\)</span>). Kita kalikan baris 4 dengan kebalikannya yaitu <span class="math notranslate nohighlight">\(-\frac{28}{37}\)</span> agar menjadi 1.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 3/2 &amp; 1/2 &amp; 2 &amp; 1 &amp; 37/2 \\
+0 &amp; 1 &amp; 3/5 &amp; -2/5 &amp; 4/5 &amp; 31/5 \\
+0 &amp; 0 &amp; 1 &amp; -27/28 &amp; 1/7 &amp; -1/7 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 8/37 &amp; 188/37 \\
+0 &amp; 0 &amp; 0 &amp; 6/7 &amp; 3/7 &amp; 39/7 \\
+\end{array}
+\right]
+\end{split}\]</div>
+</section>
+<section id="langkah-8-nolkan-elemen-di-bawah-pivot-kolom-4">
+<h3>Langkah 8: Nolkan elemen di bawah pivot kolom 4<a class="headerlink" href="#langkah-8-nolkan-elemen-di-bawah-pivot-kolom-4" title="Link to this heading">#</a></h3>
+<p><strong>Operasi baris:</strong> <span class="math notranslate nohighlight">\(R_5 \leftarrow R_5 - \frac{6}{7}R_4\)</span></p>
+<p><strong>Penjelasan:</strong> Kita nolkan satu-satunya elemen tersisa di bawah pivot ke-4 (pada baris ke-5).</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 3/2 &amp; 1/2 &amp; 2 &amp; 1 &amp; 37/2 \\
+0 &amp; 1 &amp; 3/5 &amp; -2/5 &amp; 4/5 &amp; 31/5 \\
+0 &amp; 0 &amp; 1 &amp; -27/28 &amp; 1/7 &amp; -1/7 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 8/37 &amp; 188/37 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 9/37 &amp; 45/37 \\
+\end{array}
+\right]
+\end{split}\]</div>
+</section>
+<section id="langkah-9-jadikan-pivot-kolom-5-menjadi-1">
+<h3>Langkah 9: Jadikan pivot kolom 5 menjadi 1<a class="headerlink" href="#langkah-9-jadikan-pivot-kolom-5-menjadi-1" title="Link to this heading">#</a></h3>
+<p><strong>Operasi baris:</strong> <span class="math notranslate nohighlight">\(R_5 \leftarrow \frac{37}{9}R_5\)</span></p>
+<p><strong>Penjelasan:</strong> Sebagai tahap terakhir untuk eselon baris, jadikan elemen ujung pada baris 5 kolom 5 menjadi 1 dengan mengalikannya dengan kebalikannya yaitu <span class="math notranslate nohighlight">\(\frac{37}{9}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 3/2 &amp; 1/2 &amp; 2 &amp; 1 &amp; 37/2 \\
+0 &amp; 1 &amp; 3/5 &amp; -2/5 &amp; 4/5 &amp; 31/5 \\
+0 &amp; 0 &amp; 1 &amp; -27/28 &amp; 1/7 &amp; -1/7 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 8/37 &amp; 188/37 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 5 \\
+\end{array}
+\right]
 \end{split}\]</div>
 <br>
-</section>
 <section id="hasil-akhir-matriks-eselon-baris">
-<h3>Hasil Akhir (Matriks Eselon Baris)<a class="headerlink" href="#hasil-akhir-matriks-eselon-baris" title="Link to this heading">#</a></h3>
+<h4>Hasil Akhir (Matriks Eselon Baris)<a class="headerlink" href="#hasil-akhir-matriks-eselon-baris" title="Link to this heading">#</a></h4>
 <p>Karena matriks sudah membentuk matriks identitas (karena sistem ini bentuknya sangat sederhana), kita bisa langsung membaca solusinya dari kolom terakhir:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(x_1 = 1\)</span></p></li>
@@ -541,6 +619,7 @@ $<span class="math notranslate nohighlight">\(
 <li><p><span class="math notranslate nohighlight">\(x_5 = 5\)</span></p></li>
 </ul>
 <p><img alt="original image" src="https://cdn.mathpix.com/snip/images/QMGNgt072A_at8meIP895LnjyNsLn3PjmWo0dGz8-t0.original.fullsize.png" /></p>
+</section>
 </section>
 </section>
 </section>
@@ -610,13 +689,20 @@ $<span class="math notranslate nohighlight">\(
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spl-sistem-persamaan-linear">1. SPL (Sistem Persamaan Linear)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-augmented">Matriks Augmented</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-augmented">2. Matriks Augmented</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminasi-gauss-obe">3. Eliminasi Gauss (OBE)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-nolkan-elemen-di-bawah-pivot-kolom-1">Langkah 1: nolkan elemen di bawah pivot kolom 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-nolkan-elemen-di-bawah-pivot-kolom-2">Langkah 2: nolkan elemen di bawah pivot kolom 2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-nolkan-elemen-di-bawah-pivot-kolom-3">Langkah 3: nolkan elemen di bawah pivot kolom 3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-nolkan-elemen-di-bawah-pivot-kolom-4">Langkah 4: nolkan elemen di bawah pivot kolom 4</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-matriks-eselon-baris">Hasil Akhir (Matriks Eselon Baris)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-jadikan-pivot-kolom-1-menjadi-1">Langkah 1: Jadikan pivot kolom 1 menjadi 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-nolkan-elemen-di-bawah-pivot-kolom-1">Langkah 2: Nolkan elemen di bawah pivot kolom 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-jadikan-pivot-kolom-2-menjadi-1">Langkah 3: Jadikan pivot kolom 2 menjadi 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-nolkan-elemen-di-bawah-pivot-kolom-2">Langkah 4: Nolkan elemen di bawah pivot kolom 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-5-jadikan-pivot-kolom-3-menjadi-1">Langkah 5: Jadikan pivot kolom 3 menjadi 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-6-nolkan-elemen-di-bawah-pivot-kolom-3">Langkah 6: Nolkan elemen di bawah pivot kolom 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-7-jadikan-pivot-kolom-4-menjadi-1">Langkah 7: Jadikan pivot kolom 4 menjadi 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-8-nolkan-elemen-di-bawah-pivot-kolom-4">Langkah 8: Nolkan elemen di bawah pivot kolom 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-9-jadikan-pivot-kolom-5-menjadi-1">Langkah 9: Jadikan pivot kolom 5 menjadi 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-matriks-eselon-baris">Hasil Akhir (Matriks Eselon Baris)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
