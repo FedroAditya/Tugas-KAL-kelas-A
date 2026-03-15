@@ -126,6 +126,67 @@ $$
 \right]
 $$
 
+### 5. Lanjutan: Eliminasi Gauss-Jordan (Mengnolkan elemen di atas pivot)
+
+Setelah mendapatkan Matriks Eselon Baris, kita nolkan elemen di atas setiap pivot:
+
+**Langkah 5:** Nolkan elemen di atas pivot kolom 5 ($R_4-R_5, R_3-R_5, R_2-R_5, R_1-R_5$)
+$$
+\left[
+\begin{array}{ccccc|c}
+1 & 1 & 1 & 1 & 0 & 10 \\
+0 & 1 & 1 & 1 & 0 & 9 \\
+0 & 0 & 1 & 1 & 0 & 7 \\
+0 & 0 & 0 & 1 & 0 & 4 \\
+0 & 0 & 0 & 0 & 1 & 5
+\end{array}
+\right]
+$$
+
+**Langkah 6:** Nolkan elemen di atas pivot kolom 4 ($R_3-R_4, R_2-R_4, R_1-R_4$)
+$$
+\left[
+\begin{array}{ccccc|c}
+1 & 1 & 1 & 0 & 0 & 6 \\
+0 & 1 & 1 & 0 & 0 & 5 \\
+0 & 0 & 1 & 0 & 0 & 3 \\
+0 & 0 & 0 & 1 & 0 & 4 \\
+0 & 0 & 0 & 0 & 1 & 5
+\end{array}
+\right]
+$$
+
+**Langkah 7:** Nolkan elemen di atas pivot kolom 3 ($R_2-R_3, R_1-R_3$)
+$$
+\left[
+\begin{array}{ccccc|c}
+1 & 1 & 0 & 0 & 0 & 3 \\
+0 & 1 & 0 & 0 & 0 & 2 \\
+0 & 0 & 1 & 0 & 0 & 3 \\
+0 & 0 & 0 & 1 & 0 & 4 \\
+0 & 0 & 0 & 0 & 1 & 5
+\end{array}
+\right]
+$$
+
+**Langkah 8:** Nolkan elemen di atas pivot kolom 2 ($R_1-R_2$)
+**Matriks Eselon Baris Terreduksi:**
+$$
+\left[
+\begin{array}{ccccc|c}
+1 & 0 & 0 & 0 & 0 & 1 \\
+0 & 1 & 0 & 0 & 0 & 2 \\
+0 & 0 & 1 & 0 & 0 & 3 \\
+0 & 0 & 0 & 1 & 0 & 4 \\
+0 & 0 & 0 & 0 & 1 & 5
+\end{array}
+\right]
+$$
+
+### Hasil Akhir (Gauss-Jordan):
+Dari matriks di atas, kita langsung mendapatkan:
+$x_1 = 1$, $x_2 = 2$, $x_3 = 3$, $x_4 = 4$, $x_5 = 5$.
+
 ## SAGE CELL
 ![original image](https://cdn.mathpix.com/snip/images/9NrdItnsMwNfPd79vcynviSdvuHconiQ6djYwgQqlRU.original.fullsize.png)
 ![original image](https://cdn.mathpix.com/snip/images/q3EyFKmPej_8BdP-1PUZDw2VKU1PGpULSioEuwmCiKI.original.fullsize.png)

@@ -390,6 +390,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-nolkan-elemen-di-bawah-pivot-kolom-2">Langkah 2: nolkan elemen di bawah pivot kolom 2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-nolkan-elemen-di-bawah-pivot-kolom-3">Langkah 3: nolkan elemen di bawah pivot kolom 3</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-nolkan-elemen-di-bawah-pivot-kolom-4">Langkah 4: nolkan elemen di bawah pivot kolom 4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lanjutan-eliminasi-gauss-jordan-mengnolkan-elemen-di-atas-pivot">5. Lanjutan: Eliminasi Gauss-Jordan (Mengnolkan elemen di atas pivot)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-gauss-jordan">Hasil Akhir (Gauss-Jordan):</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sage-cell">SAGE CELL</a></li>
@@ -538,6 +540,64 @@ x_1 + 2x_2 + 3x_3 + 4x_4 + 5x_5 = 55
 \right]
 \end{split}\]</div>
 </section>
+<section id="lanjutan-eliminasi-gauss-jordan-mengnolkan-elemen-di-atas-pivot">
+<h2>5. Lanjutan: Eliminasi Gauss-Jordan (Mengnolkan elemen di atas pivot)<a class="headerlink" href="#lanjutan-eliminasi-gauss-jordan-mengnolkan-elemen-di-atas-pivot" title="Link to this heading">#</a></h2>
+<p>Setelah mendapatkan Matriks Eselon Baris, kita nolkan elemen di atas setiap pivot:</p>
+<p><strong>Langkah 5:</strong> Nolkan elemen di atas pivot kolom 5 (<span class="math notranslate nohighlight">\(R_4-R_5, R_3-R_5, R_2-R_5, R_1-R_5\)</span>)
+$<span class="math notranslate nohighlight">\(
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 10 \\
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 9 \\
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 7 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 4 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 5
+\end{array}
+\right]
+\)</span>$</p>
+<p><strong>Langkah 6:</strong> Nolkan elemen di atas pivot kolom 4 (<span class="math notranslate nohighlight">\(R_3-R_4, R_2-R_4, R_1-R_4\)</span>)
+$<span class="math notranslate nohighlight">\(
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 6 \\
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 5 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 3 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 4 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 5
+\end{array}
+\right]
+\)</span>$</p>
+<p><strong>Langkah 7:</strong> Nolkan elemen di atas pivot kolom 3 (<span class="math notranslate nohighlight">\(R_2-R_3, R_1-R_3\)</span>)
+$<span class="math notranslate nohighlight">\(
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 3 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 2 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 3 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 4 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 5
+\end{array}
+\right]
+\)</span>$</p>
+<p><strong>Langkah 8:</strong> Nolkan elemen di atas pivot kolom 2 (<span class="math notranslate nohighlight">\(R_1-R_2\)</span>)
+<strong>Matriks Eselon Baris Terreduksi:</strong>
+$<span class="math notranslate nohighlight">\(
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 2 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 3 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 4 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 5
+\end{array}
+\right]
+\)</span>$</p>
+</section>
+<section id="hasil-akhir-gauss-jordan">
+<h2>Hasil Akhir (Gauss-Jordan):<a class="headerlink" href="#hasil-akhir-gauss-jordan" title="Link to this heading">#</a></h2>
+<p>Dari matriks di atas, kita langsung mendapatkan:
+<span class="math notranslate nohighlight">\(x_1 = 1\)</span>, <span class="math notranslate nohighlight">\(x_2 = 2\)</span>, <span class="math notranslate nohighlight">\(x_3 = 3\)</span>, <span class="math notranslate nohighlight">\(x_4 = 4\)</span>, <span class="math notranslate nohighlight">\(x_5 = 5\)</span>.</p>
+</section>
 </section>
 <section id="sage-cell">
 <h1>SAGE CELL<a class="headerlink" href="#sage-cell" title="Link to this heading">#</a></h1>
@@ -616,6 +676,8 @@ x_1 + 2x_2 + 3x_3 + 4x_4 + 5x_5 = 55
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-nolkan-elemen-di-bawah-pivot-kolom-2">Langkah 2: nolkan elemen di bawah pivot kolom 2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-nolkan-elemen-di-bawah-pivot-kolom-3">Langkah 3: nolkan elemen di bawah pivot kolom 3</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-nolkan-elemen-di-bawah-pivot-kolom-4">Langkah 4: nolkan elemen di bawah pivot kolom 4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lanjutan-eliminasi-gauss-jordan-mengnolkan-elemen-di-atas-pivot">5. Lanjutan: Eliminasi Gauss-Jordan (Mengnolkan elemen di atas pivot)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-gauss-jordan">Hasil Akhir (Gauss-Jordan):</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sage-cell">SAGE CELL</a></li>
