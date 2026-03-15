@@ -126,11 +126,12 @@ $$
 \right]
 $$
 
-### 5. Lanjutan: Eliminasi Gauss-Jordan (Mengnolkan elemen di atas pivot)
-
 Setelah mendapatkan Matriks Eselon Baris, kita nolkan elemen di atas setiap pivot:
 
-**Langkah 5:** Nolkan elemen di atas pivot kolom 5 ($R_4-R_5, R_3-R_5, R_2-R_5, R_1-R_5$)
+### Langkah 5: Nolkan elemen di atas pivot kolom 5 
+
+Operasi Baris :$R_4-R_5, R_3-R_5, R_2-R_5, R_1-R_5$
+
 $$
 \left[
 \begin{array}{ccccc|c}
@@ -143,7 +144,10 @@ $$
 \right]
 $$
 
-**Langkah 6:** Nolkan elemen di atas pivot kolom 4 ($R_3-R_4, R_2-R_4, R_1-R_4$)
+### Langkah 6: Nolkan elemen di atas pivot kolom 4 
+
+Operasi Baris :$R_3-R_4, R_2-R_4, R_1-R_4$
+
 $$
 \left[
 \begin{array}{ccccc|c}
@@ -156,7 +160,10 @@ $$
 \right]
 $$
 
-**Langkah 7:** Nolkan elemen di atas pivot kolom 3 ($R_2-R_3, R_1-R_3$)
+### Langkah 7: Nolkan elemen di atas pivot kolom 3 
+
+Operasi Baris :$R_2-R_3, R_1-R_3$
+
 $$
 \left[
 \begin{array}{ccccc|c}
@@ -169,8 +176,11 @@ $$
 \right]
 $$
 
-**Langkah 8:** Nolkan elemen di atas pivot kolom 2 ($R_1-R_2$)
-**Matriks Eselon Baris Terreduksi:**
+### Langkah 8: Nolkan elemen di atas pivot kolom 2 
+### Matriks Eselon Baris Terreduksi:
+
+Operasi Baris: $R_1-R_2$
+
 $$
 \left[
 \begin{array}{ccccc|c}
