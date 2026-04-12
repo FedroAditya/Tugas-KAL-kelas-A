@@ -187,6 +187,7 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
 </ul>
@@ -404,6 +405,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-awal-a">1. Matriks Awal (<span class="math notranslate nohighlight">\(A\)</span>)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-operasi-baris-elementer-obe">2. Tahapan Operasi Baris Elementer (OBE)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-determinan">3. Hasil Akhir Determinan</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-adjoin-adj-a">Matriks Adjoin <span class="math notranslate nohighlight">\(adj(A)\)</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-struktur-matriks">Analisis Struktur Matriks:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembuktian-properti">Pembuktian Properti:</a></li>
 </ul>
 </li>
 </ul>
@@ -712,6 +718,43 @@ $<span class="math notranslate nohighlight">\(
 <img alt="alt text" src="_images/image-2.png" /></p>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="matriks-adjoin-adj-a">
+<h1>Matriks Adjoin <span class="math notranslate nohighlight">\(adj(A)\)</span><a class="headerlink" href="#matriks-adjoin-adj-a" title="Link to this heading">#</a></h1>
+<p>Berdasarkan perhitungan, karena <span class="math notranslate nohighlight">\(\text{det}(A) = 1\)</span>, maka matriks Adjoin dari <span class="math notranslate nohighlight">\(A\)</span> adalah:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+adj(A) = \begin{bmatrix} 
+ 2 &amp; -1 &amp;  0 &amp;  0 &amp;  0 \\ 
+-1 &amp;  2 &amp; -1 &amp;  0 &amp;  0 \\ 
+ 0 &amp; -1 &amp;  2 &amp; -1 &amp;  0 \\ 
+ 0 &amp;  0 &amp; -1 &amp;  2 &amp; -1 \\ 
+ 0 &amp;  0 &amp;  0 &amp; -1 &amp;  1 
+\end{bmatrix}
+\end{split}\]</div>
+<section id="analisis-struktur-matriks">
+<h2>Analisis Struktur Matriks:<a class="headerlink" href="#analisis-struktur-matriks" title="Link to this heading">#</a></h2>
+<p>Matriks Adjoin ini memiliki pola khusus yang dihasilkan dari matriks koefisien berurutan:</p>
+<ol class="arabic simple">
+<li><p><strong>Diagonal Utama:</strong> Berisi angka <strong>2</strong>, kecuali elemen terakhir (<span class="math notranslate nohighlight">\(a_{55}\)</span>) yang bernilai <strong>1</strong>.</p></li>
+<li><p><strong>Sub-diagonal (Atas &amp; Bawah):</strong> Berisi angka <strong>-1</strong>.</p></li>
+<li><p><strong>Elemen Lainnya:</strong> Berisi angka <strong>0</strong>.</p></li>
+</ol>
+</section>
+<section id="pembuktian-properti">
+<h2>Pembuktian Properti:<a class="headerlink" href="#pembuktian-properti" title="Link to this heading">#</a></h2>
+<p>Sesuai dengan hukum matriks, jika kita mengalikan matriks awal <span class="math notranslate nohighlight">\(A\)</span> dengan <span class="math notranslate nohighlight">\(adj(A)\)</span>, maka hasilnya haruslah <span class="math notranslate nohighlight">\(\text{det}(A) \cdot I\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A \cdot adj(A) = 1 \cdot \begin{bmatrix} 
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\ 
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 
+\end{bmatrix}
+\end{split}\]</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -797,6 +840,11 @@ $<span class="math notranslate nohighlight">\(
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-awal-a">1. Matriks Awal (<span class="math notranslate nohighlight">\(A\)</span>)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-operasi-baris-elementer-obe">2. Tahapan Operasi Baris Elementer (OBE)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-determinan">3. Hasil Akhir Determinan</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-adjoin-adj-a">Matriks Adjoin <span class="math notranslate nohighlight">\(adj(A)\)</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-struktur-matriks">Analisis Struktur Matriks:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembuktian-properti">Pembuktian Properti:</a></li>
 </ul>
 </li>
 </ul>
