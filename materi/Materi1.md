@@ -283,3 +283,35 @@ $$
 ![alt text](image-1.png)
 ![alt text](image-2.png)
 
+# Matriks Adjoin $adj(A)$
+
+Berdasarkan perhitungan, karena $\text{det}(A) = 1$, maka matriks Adjoin dari $A$ adalah:
+
+$$
+adj(A) = \begin{bmatrix} 
+ 2 & -1 &  0 &  0 &  0 \\ 
+-1 &  2 & -1 &  0 &  0 \\ 
+ 0 & -1 &  2 & -1 &  0 \\ 
+ 0 &  0 & -1 &  2 & -1 \\ 
+ 0 &  0 &  0 & -1 &  1 
+\end{bmatrix}
+$$
+
+### Analisis Struktur Matriks:
+Matriks Adjoin ini memiliki pola khusus yang dihasilkan dari matriks koefisien berurutan:
+1. **Diagonal Utama:** Berisi angka **2**, kecuali elemen terakhir ($a_{55}$) yang bernilai **1**.
+2. **Sub-diagonal (Atas & Bawah):** Berisi angka **-1**.
+3. **Elemen Lainnya:** Berisi angka **0**.
+
+### Pembuktian Properti:
+Sesuai dengan hukum matriks, jika kita mengalikan matriks awal $A$ dengan $adj(A)$, maka hasilnya haruslah $\text{det}(A) \cdot I$:
+
+$$
+A \cdot adj(A) = 1 \cdot \begin{bmatrix} 
+1 & 0 & 0 & 0 & 0 \\ 
+0 & 1 & 0 & 0 & 0 \\ 
+0 & 0 & 1 & 0 & 0 \\ 
+0 & 0 & 0 & 1 & 0 \\ 
+0 & 0 & 0 & 0 & 1 
+\end{bmatrix}
+$$
