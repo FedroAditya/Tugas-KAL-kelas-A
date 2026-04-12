@@ -315,3 +315,47 @@ A \cdot adj(A) = 1 \cdot \begin{bmatrix}
 0 & 0 & 0 & 0 & 1 
 \end{bmatrix}
 $$
+
+# Tahapan Mencari Invers Matriks $A$
+
+Rumus umum invers matriks adalah:
+$$A^{-1} = \frac{1}{\text{det}(A)} \cdot \text{adj}(A)$$
+
+### 1. Data yang Diketahui
+Dari perhitungan sebelumnya, kita telah mendapatkan:
+* **Determinan:** $\text{det}(A) = 1$
+* **Adjoin $A$:**
+$$
+adj(A) = \begin{bmatrix} 
+ 2 & -1 &  0 &  0 &  0 \\ 
+-1 &  2 & -1 &  0 &  0 \\ 
+ 0 & -1 &  2 & -1 &  0 \\ 
+ 0 &  0 & -1 &  2 & -1 \\ 
+ 0 &  0 &  0 & -1 &  1 
+\end{bmatrix}
+$$
+
+### 2. Substitusi ke Rumus
+Karena nilai determinannya adalah **1**, maka perhitungan inversnya adalah:
+$$A^{-1} = \frac{1}{1} \cdot \begin{bmatrix} 
+ 2 & -1 &  0 &  0 &  0 \\ 
+-1 &  2 & -1 &  0 &  0 \\ 
+ 0 & -1 &  2 & -1 &  0 \\ 
+ 0 &  0 & -1 &  2 & -1 \\ 
+ 0 &  0 &  0 & -1 &  1 
+\end{bmatrix}$$
+
+### 3. Hasil Akhir Invers ($A^{-1}$)
+Dalam kasus khusus matriks ini, matriks Invers sama persis dengan matriks Adjoin-nya:
+$$
+A^{-1} = \begin{bmatrix} 
+ 2 & -1 &  0 &  0 &  0 \\ 
+-1 &  2 & -1 &  0 &  0 \\ 
+ 0 & -1 &  2 & -1 &  0 \\ 
+ 0 &  0 & -1 &  2 & -1 \\ 
+ 0 &  0 &  0 & -1 &  1 
+\end{bmatrix}
+$$
+
+![alt text](image-3.png)
+![alt text](image-4.png)
