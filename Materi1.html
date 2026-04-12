@@ -413,10 +413,16 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembuktian-properti">Pembuktian Properti:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-mencari-invers-matriks-a">Tahapan Mencari Invers Matriks <span class="math notranslate nohighlight">\(A\)</span></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-yang-diketahui">1. Data yang Diketahui</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#substitusi-ke-rumus">2. Substitusi ke Rumus</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-perhitungan-invers-matriks-a">Tahapan Perhitungan Invers Matriks <span class="math notranslate nohighlight">\(A\)</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-dasar">1. Rumus Dasar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-perhitungan">2. Langkah-Langkah Perhitungan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-menentukan-determinan"><strong>Langkah 1: Menentukan Determinan</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-menentukan-matriks-adjoin"><strong>Langkah 2: Menentukan Matriks Adjoin</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-substitusi-ke-rumus-invers"><strong>Langkah 3: Substitusi ke Rumus Invers</strong></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-invers-a-1">3. Hasil Akhir Invers (<span class="math notranslate nohighlight">\(A^{-1}\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-pembuktian">4. Verifikasi (Pembuktian)</a></li>
 </ul>
 </li>
 </ul>
@@ -762,42 +768,55 @@ A \cdot adj(A) = 1 \cdot \begin{bmatrix}
 \end{split}\]</div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="tahapan-mencari-invers-matriks-a">
-<h1>Tahapan Mencari Invers Matriks <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#tahapan-mencari-invers-matriks-a" title="Link to this heading">#</a></h1>
-<p>Rumus umum invers matriks adalah:
-$<span class="math notranslate nohighlight">\(A^{-1} = \frac{1}{\text{det}(A)} \cdot \text{adj}(A)\)</span>$</p>
-<section id="data-yang-diketahui">
-<h2>1. Data yang Diketahui<a class="headerlink" href="#data-yang-diketahui" title="Link to this heading">#</a></h2>
-<p>Dari perhitungan sebelumnya, kita telah mendapatkan:</p>
-<ul class="simple">
-<li><p><strong>Determinan:</strong> <span class="math notranslate nohighlight">\(\text{det}(A) = 1\)</span></p></li>
-<li><p><strong>Adjoin <span class="math notranslate nohighlight">\(A\)</span>:</strong>
-$<span class="math notranslate nohighlight">\(
-adj(A) = \begin{bmatrix} 
-2 &amp; -1 &amp;  0 &amp;  0 &amp;  0 \\ 
--1 &amp;  2 &amp; -1 &amp;  0 &amp;  0 \\ 
-0 &amp; -1 &amp;  2 &amp; -1 &amp;  0 \\ 
-0 &amp;  0 &amp; -1 &amp;  2 &amp; -1 \\ 
-0 &amp;  0 &amp;  0 &amp; -1 &amp;  1 
-\end{bmatrix}
-\)</span>$</p></li>
-</ul>
+<section class="tex2jax_ignore mathjax_ignore" id="tahapan-perhitungan-invers-matriks-a">
+<h1>Tahapan Perhitungan Invers Matriks <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#tahapan-perhitungan-invers-matriks-a" title="Link to this heading">#</a></h1>
+<p>Untuk matriks berukuran <span class="math notranslate nohighlight">\(5 \times 5\)</span>, kita menggunakan hubungan antara <strong>Determinan</strong> dan <strong>Adjoin</strong> untuk mencari Invers.</p>
+<section id="rumus-dasar">
+<h2>1. Rumus Dasar<a class="headerlink" href="#rumus-dasar" title="Link to this heading">#</a></h2>
+<p>Invers matriks <span class="math notranslate nohighlight">\(A\)</span> didefinisikan sebagai:
+$<span class="math notranslate nohighlight">\(A^{-1} = \frac{1}{\det(A)} \cdot \text{adj}(A)\)</span>$</p>
+<hr class="docutils" />
 </section>
-<section id="substitusi-ke-rumus">
-<h2>2. Substitusi ke Rumus<a class="headerlink" href="#substitusi-ke-rumus" title="Link to this heading">#</a></h2>
-<p>Karena nilai determinannya adalah <strong>1</strong>, maka perhitungan inversnya adalah:
-$<span class="math notranslate nohighlight">\(A^{-1} = \frac{1}{1} \cdot \begin{bmatrix} 
+<section id="langkah-langkah-perhitungan">
+<h2>2. Langkah-Langkah Perhitungan<a class="headerlink" href="#langkah-langkah-perhitungan" title="Link to this heading">#</a></h2>
+<section id="langkah-1-menentukan-determinan">
+<h3><strong>Langkah 1: Menentukan Determinan</strong><a class="headerlink" href="#langkah-1-menentukan-determinan" title="Link to this heading">#</a></h3>
+<p>Berdasarkan metode Eliminasi Gauss (OBE) yang telah dilakukan sebelumnya, didapatkan:
+$<span class="math notranslate nohighlight">\(\det(A) = 1\)</span><span class="math notranslate nohighlight">\(
+Karena \)</span>\det(A) \neq 0$, maka matriks ini memiliki invers (non-singular).</p>
+</section>
+<section id="langkah-2-menentukan-matriks-adjoin">
+<h3><strong>Langkah 2: Menentukan Matriks Adjoin</strong><a class="headerlink" href="#langkah-2-menentukan-matriks-adjoin" title="Link to this heading">#</a></h3>
+<p>Matriks Adjoin (<span class="math notranslate nohighlight">\(adj(A)\)</span>) diperoleh dari transpose matriks kofaktor. Untuk matriks dengan pola urutan seperti pada gambar (<span class="math notranslate nohighlight">\(a_{ij} = \min(i,j)\)</span>), matriks adjoinnya adalah:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\text{adj}(A) = \begin{bmatrix} 
  2 &amp; -1 &amp;  0 &amp;  0 &amp;  0 \\ 
 -1 &amp;  2 &amp; -1 &amp;  0 &amp;  0 \\ 
  0 &amp; -1 &amp;  2 &amp; -1 &amp;  0 \\ 
  0 &amp;  0 &amp; -1 &amp;  2 &amp; -1 \\ 
  0 &amp;  0 &amp;  0 &amp; -1 &amp;  1 
-\end{bmatrix}\)</span>$</p>
+\end{bmatrix}
+\end{split}\]</div>
+</section>
+<section id="langkah-3-substitusi-ke-rumus-invers">
+<h3><strong>Langkah 3: Substitusi ke Rumus Invers</strong><a class="headerlink" href="#langkah-3-substitusi-ke-rumus-invers" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^{-1} = \frac{1}{1} \cdot \begin{bmatrix} 
+ 2 &amp; -1 &amp;  0 &amp;  0 &amp;  0 \\ 
+-1 &amp;  2 &amp; -1 &amp;  0 &amp;  0 \\ 
+ 0 &amp; -1 &amp;  2 &amp; -1 &amp;  0 \\ 
+ 0 &amp;  0 &amp; -1 &amp;  2 &amp; -1 \\ 
+ 0 &amp;  0 &amp;  0 &amp; -1 &amp;  1 
+\end{bmatrix}\end{split}\]</div>
+<hr class="docutils" />
+</section>
 </section>
 <section id="hasil-akhir-invers-a-1">
 <h2>3. Hasil Akhir Invers (<span class="math notranslate nohighlight">\(A^{-1}\)</span>)<a class="headerlink" href="#hasil-akhir-invers-a-1" title="Link to this heading">#</a></h2>
-<p>Dalam kasus khusus matriks ini, matriks Invers sama persis dengan matriks Adjoin-nya:
-$<span class="math notranslate nohighlight">\(
+<p>Karena determinannya adalah 1, maka hasil perkalian skalar tidak mengubah nilai elemen di dalam matriks:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 A^{-1} = \begin{bmatrix} 
  2 &amp; -1 &amp;  0 &amp;  0 &amp;  0 \\ 
 -1 &amp;  2 &amp; -1 &amp;  0 &amp;  0 \\ 
@@ -805,7 +824,20 @@ A^{-1} = \begin{bmatrix}
  0 &amp;  0 &amp; -1 &amp;  2 &amp; -1 \\ 
  0 &amp;  0 &amp;  0 &amp; -1 &amp;  1 
 \end{bmatrix}
-\)</span>$</p>
+\end{split}\]</div>
+<hr class="docutils" />
+</section>
+<section id="verifikasi-pembuktian">
+<h2>4. Verifikasi (Pembuktian)<a class="headerlink" href="#verifikasi-pembuktian" title="Link to this heading">#</a></h2>
+<p>Sebuah matriks dikatakan invers jika memenuhi syarat <span class="math notranslate nohighlight">\(A \cdot A^{-1} = I\)</span> (Matriks Identitas):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 2 &amp; 2 &amp; 2 \\ 1 &amp; 2 &amp; 3 &amp; 3 &amp; 3 \\ 1 &amp; 2 &amp; 3 &amp; 4 &amp; 4 \\ 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \end{bmatrix} 
+\cdot 
+\begin{bmatrix} 2 &amp; -1 &amp; 0 &amp; 0 &amp; 0 \\ -1 &amp; 2 &amp; -1 &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 2 &amp; -1 &amp; 0 \\ 0 &amp; 0 &amp; -1 &amp; 2 &amp; -1 \\ 0 &amp; 0 &amp; 0 &amp; -1 &amp; 1 \end{bmatrix} 
+= 
+\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \end{bmatrix}
+\end{split}\]</div>
 <p><img alt="alt text" src="_images/image-3.png" />
 <img alt="alt text" src="_images/image-4.png" /></p>
 </section>
@@ -902,10 +934,16 @@ A^{-1} = \begin{bmatrix}
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembuktian-properti">Pembuktian Properti:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-mencari-invers-matriks-a">Tahapan Mencari Invers Matriks <span class="math notranslate nohighlight">\(A\)</span></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-yang-diketahui">1. Data yang Diketahui</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#substitusi-ke-rumus">2. Substitusi ke Rumus</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-perhitungan-invers-matriks-a">Tahapan Perhitungan Invers Matriks <span class="math notranslate nohighlight">\(A\)</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-dasar">1. Rumus Dasar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-perhitungan">2. Langkah-Langkah Perhitungan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-menentukan-determinan"><strong>Langkah 1: Menentukan Determinan</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-menentukan-matriks-adjoin"><strong>Langkah 2: Menentukan Matriks Adjoin</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-substitusi-ke-rumus-invers"><strong>Langkah 3: Substitusi ke Rumus Invers</strong></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-invers-a-1">3. Hasil Akhir Invers (<span class="math notranslate nohighlight">\(A^{-1}\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-pembuktian">4. Verifikasi (Pembuktian)</a></li>
 </ul>
 </li>
 </ul>
