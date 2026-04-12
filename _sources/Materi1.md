@@ -200,3 +200,86 @@ $x_1 = 1$, $x_2 = 2$, $x_3 = 3$, $x_4 = 4$, $x_5 = 5$.
 ## SAGE CELL
 ![original image](https://cdn.mathpix.com/snip/images/9NrdItnsMwNfPd79vcynviSdvuHconiQ6djYwgQqlRU.original.fullsize.png)
 ![original image](https://cdn.mathpix.com/snip/images/q3EyFKmPej_8BdP-1PUZDw2VKU1PGpULSioEuwmCiKI.original.fullsize.png)
+
+# Penyelesaian Determinan dengan Metode OBE
+
+Berdasarkan matriks augmented yang diberikan, kita akan mencari determinan dari matriks koefisien $A$ (matriks $5 \times 5$).
+
+### 1. Matriks Awal ($A$)
+$$
+A = \begin{bmatrix} 
+1 & 1 & 1 & 1 & 1 \\ 
+1 & 2 & 2 & 2 & 2 \\ 
+1 & 2 & 3 & 3 & 3 \\ 
+1 & 2 & 3 & 4 & 4 \\ 
+1 & 2 & 3 & 4 & 5 
+\end{bmatrix}
+$$
+
+### 2. Tahapan Operasi Baris Elementer (OBE)
+
+Tujuannya adalah membentuk **Matriks Segitiga Atas** agar determinan dapat dihitung dengan mengalikan elemen diagonal utama.
+
+**Langkah 1:** Kurangi baris ke-2, 3, 4, dan 5 dengan baris ke-1 ($R_n - R_1$).
+$$
+\xrightarrow{R_2-R_1, R_3-R_1, R_4-R_1, R_5-R_1} 
+\begin{bmatrix} 
+1 & 1 & 1 & 1 & 1 \\ 
+0 & 1 & 1 & 1 & 1 \\ 
+0 & 1 & 2 & 2 & 2 \\ 
+0 & 1 & 2 & 3 & 3 \\ 
+0 & 1 & 2 & 3 & 4 
+\end{bmatrix}
+$$
+
+**Langkah 2:** Kurangi baris ke-3, 4, dan 5 dengan baris ke-2 ($R_n - R_2$).
+$$
+\xrightarrow{R_3-R_2, R_4-R_2, R_5-R_2} 
+\begin{bmatrix} 
+1 & 1 & 1 & 1 & 1 \\ 
+0 & 1 & 1 & 1 & 1 \\ 
+0 & 0 & 1 & 1 & 1 \\ 
+0 & 0 & 1 & 2 & 2 \\ 
+0 & 0 & 1 & 2 & 3 
+\end{bmatrix}
+$$
+
+**Langkah 3:** Kurangi baris ke-4 dan 5 dengan baris ke-3 ($R_n - R_3$).
+$$
+\xrightarrow{R_4-R_3, R_5-R_3} 
+\begin{bmatrix} 
+1 & 1 & 1 & 1 & 1 \\ 
+0 & 1 & 1 & 1 & 1 \\ 
+0 & 0 & 1 & 1 & 1 \\ 
+0 & 0 & 0 & 1 & 1 \\ 
+0 & 0 & 0 & 1 & 2 
+\end{bmatrix}
+$$
+
+**Langkah 4:** Kurangi baris ke-5 dengan baris ke-4 ($R_5 - R_4$).
+$$
+\xrightarrow{R_5-R_4} 
+\begin{bmatrix} 
+1 & 1 & 1 & 1 & 1 \\ 
+0 & 1 & 1 & 1 & 1 \\ 
+0 & 0 & 1 & 1 & 1 \\ 
+0 & 0 & 0 & 1 & 1 \\ 
+0 & 0 & 0 & 0 & 1 
+\end{bmatrix}
+$$
+
+### 3. Hasil Akhir Determinan
+Karena matriks sudah berbentuk segitiga atas, maka determinannya adalah hasil kali elemen diagonalnya:
+
+$$
+\text{det}(A) = 1 \times 1 \times 1 \times 1 \times 1
+$$
+$$
+\text{det}(A) = 1
+$$
+
+> **Kesimpulan:** Nilai determinan dari matriks tersebut adalah **1**.
+
+![alt text](image-1.png)
+![alt text](image-2.png)
+

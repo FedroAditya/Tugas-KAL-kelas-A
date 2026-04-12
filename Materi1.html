@@ -186,6 +186,7 @@
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
 </ul>
@@ -399,6 +400,12 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sage-cell">SAGE CELL</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penyelesaian-determinan-dengan-metode-obe">Penyelesaian Determinan dengan Metode OBE</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-awal-a">1. Matriks Awal (<span class="math notranslate nohighlight">\(A\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-operasi-baris-elementer-obe">2. Tahapan Operasi Baris Elementer (OBE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-determinan">3. Hasil Akhir Determinan</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -623,6 +630,88 @@ x_1 + 2x_2 + 3x_3 + 4x_4 + 5x_5 = 55
 <p><img alt="original image" src="https://cdn.mathpix.com/snip/images/9NrdItnsMwNfPd79vcynviSdvuHconiQ6djYwgQqlRU.original.fullsize.png" />
 <img alt="original image" src="https://cdn.mathpix.com/snip/images/q3EyFKmPej_8BdP-1PUZDw2VKU1PGpULSioEuwmCiKI.original.fullsize.png" /></p>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="penyelesaian-determinan-dengan-metode-obe">
+<h1>Penyelesaian Determinan dengan Metode OBE<a class="headerlink" href="#penyelesaian-determinan-dengan-metode-obe" title="Link to this heading">#</a></h1>
+<p>Berdasarkan matriks augmented yang diberikan, kita akan mencari determinan dari matriks koefisien <span class="math notranslate nohighlight">\(A\)</span> (matriks <span class="math notranslate nohighlight">\(5 \times 5\)</span>).</p>
+<section id="matriks-awal-a">
+<h2>1. Matriks Awal (<span class="math notranslate nohighlight">\(A\)</span>)<a class="headerlink" href="#matriks-awal-a" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \begin{bmatrix} 
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+1 &amp; 2 &amp; 2 &amp; 2 &amp; 2 \\ 
+1 &amp; 2 &amp; 3 &amp; 3 &amp; 3 \\ 
+1 &amp; 2 &amp; 3 &amp; 4 &amp; 4 \\ 
+1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 
+\end{bmatrix}
+\end{split}\]</div>
+</section>
+<section id="tahapan-operasi-baris-elementer-obe">
+<h2>2. Tahapan Operasi Baris Elementer (OBE)<a class="headerlink" href="#tahapan-operasi-baris-elementer-obe" title="Link to this heading">#</a></h2>
+<p>Tujuannya adalah membentuk <strong>Matriks Segitiga Atas</strong> agar determinan dapat dihitung dengan mengalikan elemen diagonal utama.</p>
+<p><strong>Langkah 1:</strong> Kurangi baris ke-2, 3, 4, dan 5 dengan baris ke-1 (<span class="math notranslate nohighlight">\(R_n - R_1\)</span>).
+$<span class="math notranslate nohighlight">\(
+\xrightarrow{R_2-R_1, R_3-R_1, R_4-R_1, R_5-R_1} 
+\begin{bmatrix} 
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 1 &amp; 2 &amp; 2 &amp; 2 \\ 
+0 &amp; 1 &amp; 2 &amp; 3 &amp; 3 \\ 
+0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 
+\end{bmatrix}
+\)</span>$</p>
+<p><strong>Langkah 2:</strong> Kurangi baris ke-3, 4, dan 5 dengan baris ke-2 (<span class="math notranslate nohighlight">\(R_n - R_2\)</span>).
+$<span class="math notranslate nohighlight">\(
+\xrightarrow{R_3-R_2, R_4-R_2, R_5-R_2} 
+\begin{bmatrix} 
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 1 &amp; 2 &amp; 2 \\ 
+0 &amp; 0 &amp; 1 &amp; 2 &amp; 3 
+\end{bmatrix}
+\)</span>$</p>
+<p><strong>Langkah 3:</strong> Kurangi baris ke-4 dan 5 dengan baris ke-3 (<span class="math notranslate nohighlight">\(R_n - R_3\)</span>).
+$<span class="math notranslate nohighlight">\(
+\xrightarrow{R_4-R_3, R_5-R_3} 
+\begin{bmatrix} 
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 2 
+\end{bmatrix}
+\)</span>$</p>
+<p><strong>Langkah 4:</strong> Kurangi baris ke-5 dengan baris ke-4 (<span class="math notranslate nohighlight">\(R_5 - R_4\)</span>).
+$<span class="math notranslate nohighlight">\(
+\xrightarrow{R_5-R_4} 
+\begin{bmatrix} 
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 
+\end{bmatrix}
+\)</span>$</p>
+</section>
+<section id="hasil-akhir-determinan">
+<h2>3. Hasil Akhir Determinan<a class="headerlink" href="#hasil-akhir-determinan" title="Link to this heading">#</a></h2>
+<p>Karena matriks sudah berbentuk segitiga atas, maka determinannya adalah hasil kali elemen diagonalnya:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{det}(A) = 1 \times 1 \times 1 \times 1 \times 1
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{det}(A) = 1
+\]</div>
+<blockquote>
+<div><p><strong>Kesimpulan:</strong> Nilai determinan dari matriks tersebut adalah <strong>1</strong>.</p>
+</div></blockquote>
+<p><img alt="alt text" src="_images/image-1.png" />
+<img alt="alt text" src="_images/image-2.png" /></p>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -704,6 +793,12 @@ x_1 + 2x_2 + 3x_3 + 4x_4 + 5x_5 = 55
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sage-cell">SAGE CELL</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penyelesaian-determinan-dengan-metode-obe">Penyelesaian Determinan dengan Metode OBE</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-awal-a">1. Matriks Awal (<span class="math notranslate nohighlight">\(A\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-operasi-baris-elementer-obe">2. Tahapan Operasi Baris Elementer (OBE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-determinan">3. Hasil Akhir Determinan</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
