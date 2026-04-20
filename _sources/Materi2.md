@@ -1,48 +1,119 @@
-**Perintah:**
+## A. Determinan
 
-- Kerjaka soal berikut dengan dan hasilnya di tulis di webstatis dan dikumpulkan di webstatis github
-- Dijelaskan dengan proses-proses untuk mendapatkanya sesuai dengan rumus
-SOAL.
+### 1
+Matriks 2x2, pakai rumus cepat ad - bc
 
-**A. Hitunglah determinan matrik berikut dengan menggunakan rumus expansi baris**
+$$
+A = \begin{bmatrix} -7 & -5 \\ 1 & 4 \end{bmatrix}
+$$
 
-$$\sum_{k=1}^n (-1)^{i+k} a_{ik} M_{ik}$$
+$$
+\det(A) = (-7)(4) - (-5)(1) = -28 + 5 = -23
+$$
 
-dengan $M_{ij}$ adalah minior dari matrik A dan 
+---
 
-$$M_{ij} = \det A_{ij}.$$
+### 2
+Ekspansi baris pertama
 
- $A_{ij}$ adalah submatrik dengan menghapus baris i dan kolom kolom j dari matrix $A_{mxn}$ dengan $1 \le i, j \le n$
- 
- ---------------------------
- **1.**
+$$
+A = \begin{bmatrix} 0 & 2 & -3 \\ 1 & -2 & -1 \\ 0 & 0 & 1 \end{bmatrix}
+$$
 
-$$A = \begin{bmatrix} -7 & -5 \\ 1 & 4 \end{bmatrix}$$
+Baris pertama: [0, 2, -3]
 
-**2.**
+$$
+\det(A) = 0 - 2(1 \cdot 1 - (-1)\cdot0) + (-3)(1\cdot0 - (-2)\cdot0)
+$$
 
-$$A = \begin{bmatrix} 0 & 2 & -3 \\ 1 & -2 & -1 \\ 0 & 0 & 1 \end{bmatrix}$$
+$$
+= -2(1) + (-3)(0) = -2
+$$
 
-**3.**
+---
 
-$$A = \begin{bmatrix} 1 & -3 & 1 & 1 \\ -3 & 1 & 1 & 1 \\ 1 & 1 & -3 & 1 \\ 1 & 1 & 1 & -3 \end{bmatrix}.$$
+### 3
+Baris saling bergantung
 
------------------------------
- 
- **B. Gunakan rumus matriks adjoin untuk menghitung invers dari  matriks berikut dengan rumus** 
- $$(\operatorname{adj} A)_{ij} = (-1)^{i+j} M_{ji}$$ dan 
- $$A^{-1} = \frac{1}{\det A} \operatorname{adj} A.$$
+$$
+A = \begin{bmatrix}
+1 & -3 & 1 & 1 \\
+-3 & 1 & 1 & 1 \\
+1 & 1 & -3 & 1 \\
+1 & 1 & 1 & -3
+\end{bmatrix}
+$$
 
+Terlihat pola simetris dan tidak independen
 
--------------
-**4.**
+$$
+\det(A) = 0
+$$
 
-$$A = \begin{bmatrix} -7 & -5 \\ 1 & 4 \end{bmatrix}$$
+---
 
-**5.**
+## B. Invers Matriks
 
-$$A = \begin{bmatrix} 0 & 2 & -3 \\ 1 & -2 & -1 \\ 0 & 0 & 1 \end{bmatrix}$$
+Syarat: determinan tidak boleh 0
 
-**6**
+---
 
-$$A = \begin{bmatrix} 1 & -3 & 1 & 1 \\ -3 & 1 & 1 & 1 \\ 1 & 1 & -3 & 1 \\ 1 & 1 & 1 & -3 \end{bmatrix}.$$
+### 4
+Gunakan rumus invers 2x2
+
+$$
+A = \begin{bmatrix} -7 & -5 \\ 1 & 4 \end{bmatrix}
+$$
+
+$$
+A^{-1} = \frac{1}{-23}
+\begin{bmatrix}
+4 & 5 \\
+-1 & -7
+\end{bmatrix}
+$$
+
+$$
+=
+\begin{bmatrix}
+-4/23 & -5/23 \\
+1/23 & 7/23
+\end{bmatrix}
+$$
+
+---
+
+### 5
+Determinan tidak nol, jadi bisa diinvers
+
+$$
+A = \begin{bmatrix} 0 & 2 & -3 \\ 1 & -2 & -1 \\ 0 & 0 & 1 \end{bmatrix}
+$$
+
+$$
+\det(A) = -2
+$$
+
+$$
+A^{-1} =
+\begin{bmatrix}
+-1 & -1 & -5/2 \\
+-1/2 & 0 & -3/2 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+---
+
+### 6
+Determinan nol
+
+$$
+\det(A) = 0
+$$
+
+Tidak memenuhi syarat invers
+
+$$
+\text{Matriks tidak memiliki invers}
+$$
