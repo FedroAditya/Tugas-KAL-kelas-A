@@ -1,5 +1,3 @@
-# 
-
 **Perintah:**
 
 - Kerjaka soal berikut dengan dan hasilnya di tulis di webstatis dan dikumpulkan di webstatis github
