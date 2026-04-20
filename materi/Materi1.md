@@ -316,17 +316,28 @@ A \cdot adj(A) = 1 \cdot \begin{bmatrix}
 \end{bmatrix}
 $$
 
-# Tahapan Mencari Invers Matriks $A$
+# Tahapan Perhitungan Invers Matriks $A$
 
-Rumus umum invers matriks adalah:
-$$A^{-1} = \frac{1}{\text{det}(A)} \cdot \text{adj}(A)$$
+Untuk matriks berukuran $5 \times 5$, kita menggunakan hubungan antara **Determinan** dan **Adjoin** untuk mencari Invers.
 
-### 1. Data yang Diketahui
-Dari perhitungan sebelumnya, kita telah mendapatkan:
-* **Determinan:** $\text{det}(A) = 1$
-* **Adjoin $A$:**
+### 1. Rumus Dasar
+Invers matriks $A$ didefinisikan sebagai:
+$$A^{-1} = \frac{1}{\det(A)} \cdot \text{adj}(A)$$
+
+---
+
+### 2. Langkah-Langkah Perhitungan
+
+#### **Langkah 1: Menentukan Determinan**
+Berdasarkan metode Eliminasi Gauss (OBE) yang telah dilakukan sebelumnya, didapatkan:
+$$\det(A) = 1$$
+Karena $\det(A) \neq 0$, maka matriks ini memiliki invers (non-singular).
+
+#### **Langkah 2: Menentukan Matriks Adjoin**
+Matriks Adjoin ($adj(A)$) diperoleh dari transpose matriks kofaktor. Untuk matriks dengan pola urutan seperti pada gambar ($a_{ij} = \min(i,j)$), matriks adjoinnya adalah:
+
 $$
-adj(A) = \begin{bmatrix} 
+\text{adj}(A) = \begin{bmatrix} 
  2 & -1 &  0 &  0 &  0 \\ 
 -1 &  2 & -1 &  0 &  0 \\ 
  0 & -1 &  2 & -1 &  0 \\ 
@@ -335,8 +346,7 @@ adj(A) = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-### 2. Substitusi ke Rumus
-Karena nilai determinannya adalah **1**, maka perhitungan inversnya adalah:
+#### **Langkah 3: Substitusi ke Rumus Invers**
 $$A^{-1} = \frac{1}{1} \cdot \begin{bmatrix} 
  2 & -1 &  0 &  0 &  0 \\ 
 -1 &  2 & -1 &  0 &  0 \\ 
@@ -345,8 +355,11 @@ $$A^{-1} = \frac{1}{1} \cdot \begin{bmatrix}
  0 &  0 &  0 & -1 &  1 
 \end{bmatrix}$$
 
+---
+
 ### 3. Hasil Akhir Invers ($A^{-1}$)
-Dalam kasus khusus matriks ini, matriks Invers sama persis dengan matriks Adjoin-nya:
+Karena determinannya adalah 1, maka hasil perkalian skalar tidak mengubah nilai elemen di dalam matriks:
+
 $$
 A^{-1} = \begin{bmatrix} 
  2 & -1 &  0 &  0 &  0 \\ 
@@ -357,5 +370,17 @@ A^{-1} = \begin{bmatrix}
 \end{bmatrix}
 $$
 
+---
+
+### 4. Verifikasi (Pembuktian)
+Sebuah matriks dikatakan invers jika memenuhi syarat $A \cdot A^{-1} = I$ (Matriks Identitas):
+
+$$
+\begin{bmatrix} 1 & 1 & 1 & 1 & 1 \\ 1 & 2 & 2 & 2 & 2 \\ 1 & 2 & 3 & 3 & 3 \\ 1 & 2 & 3 & 4 & 4 \\ 1 & 2 & 3 & 4 & 5 \end{bmatrix} 
+\cdot 
+\begin{bmatrix} 2 & -1 & 0 & 0 & 0 \\ -1 & 2 & -1 & 0 & 0 \\ 0 & -1 & 2 & -1 & 0 \\ 0 & 0 & -1 & 2 & -1 \\ 0 & 0 & 0 & -1 & 1 \end{bmatrix} 
+= 
+\begin{bmatrix} 1 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 1 \end{bmatrix}
+$$
 ![alt text](image-3.png)
 ![alt text](image-4.png)
