@@ -2,9 +2,9 @@
 ## Pencerminan Titik terhadap Sumbu X dan Sumbu Y
 
 ## 🔗 Demo Interaktif
-clik link ini untuk mengarah ke colab
+klik link ini untuk mengarah ke colab
 
-[![Open In Colab](https://colab.research.google.com/drive/1FDJRB4oR3z_4xqgwWDbaixOl96mhPCF9?usp=sharing)]
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1FDJRB4oR3z_4xqgwWDbaixOl96mhPCF9?usp=sharing)
 
 > **Cara pakai:** Klik badge di atas → Colab terbuka → Jalankan cell → UI langsung muncul.
 
