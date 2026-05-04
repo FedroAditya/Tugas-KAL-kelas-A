@@ -6,5 +6,6 @@ root: intro
 chapters:
 - file: Materi1
 - file: Materi2
+- file: Materi3
 - file: notebooks
 - file: markdown-notebooks
