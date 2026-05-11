@@ -1,7 +1,7 @@
 # Dekomposisi QR dan Nilai Eigen
 clik link ini untuk mengarah ke colab
 
-[![Open In Colab](https://colab.research.google.com/drive/11YjHlEAkCw6cHerfdBFP28QStXcJLAMZ?usp=sharing](https://colab.research.google.com/drive/11YjHlEAkCw6cHerfdBFP28QStXcJLAMZ?usp=sharing)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/11YjHlEAkCw6cHerfdBFP28QStXcJLAMZ?usp=sharing)
 ---
 
 ## Matriks A
