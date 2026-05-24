@@ -1,0 +1,699 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Face Recognition Eigenface + SVD &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Materi5';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Content with notebooks" href="notebooks.html" />
+    <link rel="prev" title="Dekomposisi QR dan Nilai Eigen" href="Materi4.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Saya.jpg" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/Saya.jpg" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Nama : Fedro Aditya Ginting
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Materi1.html">1. SPL (Sistem Persamaan Linear)</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Materi2.html">A. Determinan</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Materi3.html">Laporan Refleksi Geometri</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Materi4.html">Dekomposisi QR dan Nilai Eigen</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Face Recognition Eigenface + SVD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FMateri5.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Materi5.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Face Recognition Eigenface + SVD</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-dataset">📁 Struktur Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-1-setup-import-dan-load-dataset">⚙️ Tahap 1 — Setup, Import, dan Load Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-load-dataset">Proses Load Dataset:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-2-hitung-mean-face-rata-rata-wajah">📊 Tahap 2 — Hitung Mean Face (Rata-rata Wajah)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-3-normalisasi-data-matrix-a">📊 Tahap 3 — Normalisasi Data (Matrix A)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-4-svd-singular-value-decomposition">🔢 Tahap 4 — SVD (Singular Value Decomposition)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-5-pemilihan-visualisasi-eigenface">🖼️ Tahap 5 — Pemilihan &amp; Visualisasi Eigenface</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-6-proyeksi-training-ke-eigenspace">📐 Tahap 6 — Proyeksi Training ke Eigenspace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-7-input-proyeksi-wajah-baru-testing">🧪 Tahap 7 — Input &amp; Proyeksi Wajah Baru (Testing)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-8-hitung-jarak-penentuan-hasil-recognition">🎯 Tahap 8 — Hitung Jarak &amp; Penentuan Hasil (Recognition)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><strong>Google Colab | Penjelasan Lengkap Kode &amp; Output</strong></p>
+<blockquote>
+<div><p>🔗 <strong>Link Notebook Colab:</strong> <a class="reference external" href="https://colab.research.google.com/drive/1mwvPe41DYtNWffLw7xmxVsxCTYTNWk4X?usp=sharing">Buka di Google Colab</a></p>
+</div></blockquote>
+<section class="tex2jax_ignore mathjax_ignore" id="face-recognition-eigenface-svd">
+<h1>Face Recognition Eigenface + SVD<a class="headerlink" href="#face-recognition-eigenface-svd" title="Link to this heading">#</a></h1>
+<p><strong>Penjelasan Lengkap Kode &amp; Alur Kerja</strong></p>
+<hr class="docutils" />
+<section id="struktur-dataset">
+<h2>📁 Struktur Dataset<a class="headerlink" href="#struktur-dataset" title="Link to this heading">#</a></h2>
+<p>Berdasarkan struktur ekstraksi ZIP yang digunakan, dataset memiliki susunan folder seperti ini:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dataset/
+├── bahlil/
+│   ├── bahlil (1).png/jpg
+│   ├── BAHLIL.png/jpg
+│   └── download.png/jpg
+└── king nasir/
+    ├── King nasir con camisa para mi amiga.png/jpg
+    ├── King Nasir.png/jpg
+    └── nasir.png/jpg
+</pre></div>
+</div>
+<p>Terdapat <strong>2 orang (kelas)</strong> yaitu <code class="docutils literal notranslate"><span class="pre">bahlil</span></code> dan <code class="docutils literal notranslate"><span class="pre">king</span> <span class="pre">nasir</span></code>, masing-masing dengan <strong>3 foto wajah</strong> untuk data training. Total data = <strong>6 gambar</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="tahap-1-setup-import-dan-load-dataset">
+<h2>⚙️ Tahap 1 — Setup, Import, dan Load Dataset<a class="headerlink" href="#tahap-1-setup-import-dan-load-dataset" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">opencv</span><span class="o">-</span><span class="n">python</span> <span class="n">matplotlib</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="o">-</span><span class="n">q</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">zipfile</span><span class="o">,</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span><span class="o">,</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics.pairwise</span><span class="w"> </span><span class="kn">import</span> <span class="n">euclidean_distances</span>
+
+</pre></div>
+</div>
+<p>Program menggunakan <code class="docutils literal notranslate"><span class="pre">cv2</span></code> untuk manipulasi gambar, <code class="docutils literal notranslate"><span class="pre">numpy</span></code> untuk perhitungan matriks (SVD), <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> untuk visualisasi, dan modul <code class="docutils literal notranslate"><span class="pre">euclidean_distances</span></code> dari <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> untuk menghitung kemiripan jarak antar wajah.</p>
+<section id="proses-load-dataset">
+<h3>Proses Load Dataset:<a class="headerlink" href="#proses-load-dataset" title="Link to this heading">#</a></h3>
+<p>Fungsi <code class="docutils literal notranslate"><span class="pre">load_dataset(path)</span></code> melakukan <em>looping</em> ke setiap folder orang, membaca setiap gambar, dan melakukan 3 tahap <em>preprocessing</em> utama:</p>
+<ol class="arabic simple">
+<li><p><strong>Grayscale:</strong> <code class="docutils literal notranslate"><span class="pre">cv2.IMREAD_GRAYSCALE</span></code> menyederhanakan gambar dengan membuang dimensi warna (hanya hitam-putih).</p></li>
+<li><p><strong>Resize:</strong> Menyeragamkan ukuran semua gambar menjadi <code class="docutils literal notranslate"><span class="pre">100x100</span></code> piksel.</p></li>
+<li><p><strong>Flatten:</strong> Mengubah matriks gambar 2D (100x100) menjadi <em>array</em> 1 dimensi (vektor) dengan <strong>10.000 elemen</strong>.</p></li>
+</ol>
+<p><strong>Output dari Tahap 1:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Jumlah data training : 6
+Ukuran matrix data (X) : (6, 10000)
+</pre></div>
+</div>
+<p>Matrix <code class="docutils literal notranslate"><span class="pre">X</span></code> ini berisi 6 baris (merepresentasikan 6 gambar) dan 10.000 kolom (merepresentasikan nilai tiap piksel).</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="tahap-2-hitung-mean-face-rata-rata-wajah">
+<h2>📊 Tahap 2 — Hitung Mean Face (Rata-rata Wajah)<a class="headerlink" href="#tahap-2-hitung-mean-face-rata-rata-wajah" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mean_face</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>Di sini, program menghitung rata-rata nilai kecerahan pada <em>setiap piksel</em> dari seluruh ke-6 gambar <em>training</em>. Karena <em>array</em> berukuran 10.000, <code class="docutils literal notranslate"><span class="pre">mean_face</span></code> juga akan menghasilkan <em>array</em> 1D berisi 10.000 nilai rata-rata.</p>
+<p>Fungsinya adalah mencari “pola wajah dasar” dari keseluruhan dataset sebelum mencari fitur pembeda dari tiap individu.</p>
+</section>
+<hr class="docutils" />
+<section id="tahap-3-normalisasi-data-matrix-a">
+<h2>📊 Tahap 3 — Normalisasi Data (Matrix A)<a class="headerlink" href="#tahap-3-normalisasi-data-matrix-a" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">X</span> <span class="o">-</span> <span class="n">mean_face</span>
+
+</pre></div>
+</div>
+<p>Setiap nilai piksel pada gambar <em>training</em> dikurangi dengan nilai <code class="docutils literal notranslate"><span class="pre">mean_face</span></code>.</p>
+<ul class="simple">
+<li><p>Jika nilainya <strong>positif</strong>, piksel tersebut lebih terang dari rata-rata.</p></li>
+<li><p>Jika nilainya <strong>negatif</strong>, piksel tersebut lebih gelap dari rata-rata.</p></li>
+</ul>
+<p>Tujuannya adalah memusatkan data (<em>center data</em>) di titik nol. Matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> inilah yang benar-benar menyimpan informasi “perbedaan/keunikan” setiap wajah dari wajah rata-rata, dan siap dimasukkan ke dalam algoritma SVD.</p>
+</section>
+<hr class="docutils" />
+<section id="tahap-4-svd-singular-value-decomposition">
+<h2>🔢 Tahap 4 — SVD (Singular Value Decomposition)<a class="headerlink" href="#tahap-4-svd-singular-value-decomposition" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">VT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>Fungsi inti dari sistem ini. SVD memecah matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> (6 x 10000) menjadi tiga matrix terpisah:</p>
+<ol class="arabic simple">
+<li><p><strong>Matrix U (6 x 6):</strong> Vektor singular kiri. Tidak terlalu digunakan untuk tahapan proyeksi selanjutnya pada kode ini.</p></li>
+<li><p><strong>Matrix S / Sigma (6,):</strong> Berisi <em>Singular Values</em> yang otomatis diurutkan dari nilai terbesar ke terkecil. Nilai <code class="docutils literal notranslate"><span class="pre">S</span></code> mewakili seberapa besar “informasi” atau variasi yang ditangkap oleh masing-masing komponen.</p></li>
+<li><p><strong>Matrix VT (6 x 10000):</strong> Vektor singular kanan (<em>transpose</em>). <strong>Setiap baris di VT adalah satu Eigenface.</strong> Karena dataset ada 6 gambar, rank maksimalnya adalah 6. Jadi dihasilkan 6 baris Eigenface berukuran 10.000 piksel.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="tahap-5-pemilihan-visualisasi-eigenface">
+<h2>🖼️ Tahap 5 — Pemilihan &amp; Visualisasi Eigenface<a class="headerlink" href="#tahap-5-pemilihan-visualisasi-eigenface" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">VT</span><span class="p">):</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">VT</span><span class="p">)</span>
+<span class="n">eigenfaces</span> <span class="o">=</span> <span class="n">VT</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+
+</pre></div>
+</div>
+<p>Target awalnya mengambil 10 Eigenface utama. Namun, karena ada validasi <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">k</span> <span class="pre">&gt;</span> <span class="pre">len(VT)</span></code>, dan total baris <code class="docutils literal notranslate"><span class="pre">VT</span></code> hanya 6, maka program otomatis menyesuaikan nilai <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">6</span></code>.</p>
+<p>Variabel <code class="docutils literal notranslate"><span class="pre">eigenfaces</span></code> sekarang berisi 6 fitur utama pengenalan wajah. Tiap vektor 1D di <code class="docutils literal notranslate"><span class="pre">eigenfaces</span></code> di-<em>reshape</em> kembali menjadi 100x100 dan diplot memakai <code class="docutils literal notranslate"><span class="pre">plt.imshow()</span></code>, menghasilkan gambar abstrak seperti bayangan wajah (<em>ghost faces</em>).</p>
+</section>
+<hr class="docutils" />
+<section id="tahap-6-proyeksi-training-ke-eigenspace">
+<h2>📐 Tahap 6 — Proyeksi Training ke Eigenspace<a class="headerlink" href="#tahap-6-proyeksi-training-ke-eigenspace" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">projected_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">eigenfaces</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>Ini adalah langkah mengompresi data (<em>Dimensionality Reduction</em>). Alih-alih mengenali wajah berdasarkan 10.000 piksel, 6 gambar <em>training</em> awal (<code class="docutils literal notranslate"><span class="pre">A</span></code>) diubah (diproyeksikan) ke dalam “ruang eigenface”.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> berukuran (6 x 10000)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eigenfaces.T</span></code> berukuran (10000 x 6)</p></li>
+<li><p>Hasilnya <code class="docutils literal notranslate"><span class="pre">projected_train</span></code> berukuran <strong>(6 x 6)</strong>.</p></li>
+</ul>
+<p>Sekarang, setiap 1 gambar wajah hanya direpresentasikan oleh <strong>6 angka</strong> saja (bobot komponen). Ini yang membuat pencarian menjadi sangat ringan dan cepat.</p>
+</section>
+<hr class="docutils" />
+<section id="tahap-7-input-proyeksi-wajah-baru-testing">
+<h2>🧪 Tahap 7 — Input &amp; Proyeksi Wajah Baru (Testing)<a class="headerlink" href="#tahap-7-input-proyeksi-wajah-baru-testing" title="Link to this heading">#</a></h2>
+<p>Saat gambar uji dimasukkan, gambar tersebut wajib melalui “jalur” <em>preprocessing</em> yang persis sama dengan data <em>training</em>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Load &amp; Flatten jadi vektor (10.000,)</span>
+<span class="n">test_vector</span> <span class="o">=</span> <span class="n">test_img</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="c1"># 2. Normalisasi (Kurangi mean face)</span>
+<span class="n">test_normalized</span> <span class="o">=</span> <span class="n">test_vector</span> <span class="o">-</span> <span class="n">mean_face</span>
+
+<span class="c1"># 3. Proyeksikan ke Eigenspace</span>
+<span class="n">projected_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">test_normalized</span><span class="p">,</span> <span class="n">eigenfaces</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>Gambar <em>testing</em> yang awalnya berukuran 10.000 piksel kini berhasil diekstrak fiturnya menjadi hanya <strong>1 baris array berisi 6 angka</strong> (ukuran 1 x 6).</p>
+</section>
+<hr class="docutils" />
+<section id="tahap-8-hitung-jarak-penentuan-hasil-recognition">
+<h2>🎯 Tahap 8 — Hitung Jarak &amp; Penentuan Hasil (Recognition)<a class="headerlink" href="#tahap-8-hitung-jarak-penentuan-hasil-recognition" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">distances</span> <span class="o">=</span> <span class="n">euclidean_distances</span><span class="p">([</span><span class="n">projected_test</span><span class="p">],</span> <span class="n">projected_train</span><span class="p">)</span>
+<span class="n">best_match_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+<span class="n">hasil</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">best_match_index</span><span class="p">]</span>
+
+</pre></div>
+</div>
+<p>Fungsi <em>library</em> <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> bekerja di tahap akhir ini:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">euclidean_distances</span></code></strong>: Menghitung jarak garis lurus (geometri) antara koordinat gambar <em>test</em> (6 angka) dengan keenam koordinat gambar <em>training</em>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">np.argmin(distances)</span></code></strong>: Mencari <em>index</em> (posisi data) yang nilai jaraknya <strong>paling kecil</strong>. Jarak terkecil berarti wajah tersebut adalah yang <strong>paling mirip</strong>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">y[best_match_index]</span></code></strong>: Memanggil label kelas (<code class="docutils literal notranslate"><span class="pre">bahlil</span></code> atau <code class="docutils literal notranslate"><span class="pre">king</span> <span class="pre">nasir</span></code>) pada <em>index</em> yang paling cocok tersebut untuk ditampilkan sebagai hasil akhir.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Materi4.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Dekomposisi QR dan Nilai Eigen</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="notebooks.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Content with notebooks</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-dataset">📁 Struktur Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-1-setup-import-dan-load-dataset">⚙️ Tahap 1 — Setup, Import, dan Load Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-load-dataset">Proses Load Dataset:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-2-hitung-mean-face-rata-rata-wajah">📊 Tahap 2 — Hitung Mean Face (Rata-rata Wajah)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-3-normalisasi-data-matrix-a">📊 Tahap 3 — Normalisasi Data (Matrix A)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-4-svd-singular-value-decomposition">🔢 Tahap 4 — SVD (Singular Value Decomposition)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-5-pemilihan-visualisasi-eigenface">🖼️ Tahap 5 — Pemilihan &amp; Visualisasi Eigenface</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-6-proyeksi-training-ke-eigenspace">📐 Tahap 6 — Proyeksi Training ke Eigenspace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-7-input-proyeksi-wajah-baru-testing">🧪 Tahap 7 — Input &amp; Proyeksi Wajah Baru (Testing)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-8-hitung-jarak-penentuan-hasil-recognition">🎯 Tahap 8 — Hitung Jarak &amp; Penentuan Hasil (Recognition)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

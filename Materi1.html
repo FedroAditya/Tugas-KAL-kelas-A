@@ -1,0 +1,1007 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. SPL (Sistem Persamaan Linear) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Materi1';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="A. Determinan" href="Materi2.html" />
+    <link rel="prev" title="Nama : Fedro Aditya Ginting" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Saya.jpg" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/Saya.jpg" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Nama : Fedro Aditya Ginting
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. SPL (Sistem Persamaan Linear)</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Materi2.html">A. Determinan</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Materi3.html">Laporan Refleksi Geometri</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FMateri1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Materi1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1. SPL (Sistem Persamaan Linear)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. SPL (Sistem Persamaan Linear)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-augmented">2. Matriks Augmented</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminasi-gauss-obe">3. Eliminasi Gauss (OBE)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-nolkan-elemen-di-bawah-pivot-kolom-1">Langkah 1: nolkan elemen di bawah pivot kolom 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-nolkan-elemen-di-bawah-pivot-kolom-2">Langkah 2: nolkan elemen di bawah pivot kolom 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-nolkan-elemen-di-bawah-pivot-kolom-3">Langkah 3: nolkan elemen di bawah pivot kolom 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-nolkan-elemen-di-bawah-pivot-kolom-4">Langkah 4: nolkan elemen di bawah pivot kolom 4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-5-nolkan-elemen-di-atas-pivot-kolom-5">Langkah 5: Nolkan elemen di atas pivot kolom 5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-6-nolkan-elemen-di-atas-pivot-kolom-4">Langkah 6: Nolkan elemen di atas pivot kolom 4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-7-nolkan-elemen-di-atas-pivot-kolom-3">Langkah 7: Nolkan elemen di atas pivot kolom 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-8-nolkan-elemen-di-atas-pivot-kolom-2">Langkah 8: Nolkan elemen di atas pivot kolom 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-eselon-baris-terreduksi">Matriks Eselon Baris Terreduksi:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-gauss-jordan">Hasil Akhir (Gauss-Jordan):</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sage-cell">SAGE CELL</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penyelesaian-determinan-dengan-metode-obe">Penyelesaian Determinan dengan Metode OBE</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-awal-a">1. Matriks Awal (<span class="math notranslate nohighlight">\(A\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-operasi-baris-elementer-obe">2. Tahapan Operasi Baris Elementer (OBE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-determinan">3. Hasil Akhir Determinan</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-adjoin-adj-a">Matriks Adjoin <span class="math notranslate nohighlight">\(adj(A)\)</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-struktur-matriks">Analisis Struktur Matriks:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembuktian-properti">Pembuktian Properti:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-perhitungan-invers-matriks-a">Tahapan Perhitungan Invers Matriks <span class="math notranslate nohighlight">\(A\)</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-dasar">1. Rumus Dasar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-perhitungan">2. Langkah-Langkah Perhitungan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-menentukan-determinan"><strong>Langkah 1: Menentukan Determinan</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-menentukan-matriks-adjoin"><strong>Langkah 2: Menentukan Matriks Adjoin</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-substitusi-ke-rumus-invers"><strong>Langkah 3: Substitusi ke Rumus Invers</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-invers-a-1">3. Hasil Akhir Invers (<span class="math notranslate nohighlight">\(A^{-1}\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-pembuktian">4. Verifikasi (Pembuktian)</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="spl-sistem-persamaan-linear">
+<h1>1. SPL (Sistem Persamaan Linear)<a class="headerlink" href="#spl-sistem-persamaan-linear" title="Link to this heading">#</a></h1>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+x_1 + x_2 + x_3 + x_4 + x_5 = 15 \\
+x_1 + 2x_2 + 2x_3 + 2x_4 + 2x_5 = 29 \\
+x_1 + 2x_2 + 3x_3 + 3x_4 + 3x_5 = 41 \\
+x_1 + 2x_2 + 3x_3 + 4x_4 + 4x_5 = 50 \\
+x_1 + 2x_2 + 3x_3 + 4x_4 + 5x_5 = 55
+\end{cases}
+\end{split}\]</div>
+</section>
+<section id="matriks-augmented">
+<h1>2. Matriks Augmented<a class="headerlink" href="#matriks-augmented" title="Link to this heading">#</a></h1>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 15 \\
+1 &amp; 2 &amp; 2 &amp; 2 &amp; 2 &amp; 29 \\
+1 &amp; 2 &amp; 3 &amp; 3 &amp; 3 &amp; 41 \\
+1 &amp; 2 &amp; 3 &amp; 4 &amp; 4 &amp; 50 \\
+1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 55
+\end{array}
+\right]
+\end{split}\]</div>
+</section>
+<section id="eliminasi-gauss-obe">
+<h1>3. Eliminasi Gauss (OBE)<a class="headerlink" href="#eliminasi-gauss-obe" title="Link to this heading">#</a></h1>
+<p><strong>Matriks Augmented Awal:</strong> $<span class="math notranslate nohighlight">\(
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 15 \\
+1 &amp; 2 &amp; 2 &amp; 2 &amp; 2 &amp; 29 \\
+1 &amp; 2 &amp; 3 &amp; 3 &amp; 3 &amp; 41 \\
+1 &amp; 2 &amp; 3 &amp; 4 &amp; 4 &amp; 50 \\
+1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 55
+\end{array}
+\right]
+\)</span>$</p>
+<section id="langkah-1-nolkan-elemen-di-bawah-pivot-kolom-1">
+<h2>Langkah 1: nolkan elemen di bawah pivot kolom 1<a class="headerlink" href="#langkah-1-nolkan-elemen-di-bawah-pivot-kolom-1" title="Link to this heading">#</a></h2>
+<p>Operasi baris: <span class="math notranslate nohighlight">\(R_2 \leftarrow R_2 - R_1\)</span>, <span class="math notranslate nohighlight">\(R_3 \leftarrow R_3 - R_1\)</span>, <span class="math notranslate nohighlight">\(R_4 \leftarrow R_4 - R_1\)</span>, <span class="math notranslate nohighlight">\(R_5 \leftarrow R_5 - R_1\)</span></p>
+<p>Penjelasan:</p>
+<ol class="arabic simple">
+<li><p>Pivot pertama ada di kolom 1 baris 1 (angka 1).</p></li>
+<li><p>Di bawahnya (baris 2, 3, 4, dan 5 kolom 1) semuanya ada angka 1.</p></li>
+<li><p>Kita ingin membuat elemen tersebut menjadi 0.</p></li>
+<li><p>Caranya dengan mengurangkan baris 1 dari baris 2, 3, 4, dan 5.</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 15 \\
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 14 \\
+0 &amp; 1 &amp; 2 &amp; 2 &amp; 2 &amp; 26 \\
+0 &amp; 1 &amp; 2 &amp; 3 &amp; 3 &amp; 35 \\
+0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 40
+\end{array}
+\right]
+\end{split}\]</div>
+</section>
+<section id="langkah-2-nolkan-elemen-di-bawah-pivot-kolom-2">
+<h2>Langkah 2: nolkan elemen di bawah pivot kolom 2<a class="headerlink" href="#langkah-2-nolkan-elemen-di-bawah-pivot-kolom-2" title="Link to this heading">#</a></h2>
+<p>Operasi baris: <span class="math notranslate nohighlight">\(R_3 \leftarrow R_3 - R_2\)</span>, <span class="math notranslate nohighlight">\(R_4 \leftarrow R_4 - R_2\)</span>, <span class="math notranslate nohighlight">\(R_5 \leftarrow R_5 - R_2\)</span></p>
+<p>Penjelasan:</p>
+<ol class="arabic simple">
+<li><p>Pivot kedua ada di kolom 2 baris 2 (angka 1).</p></li>
+<li><p>Di bawahnya (baris 3, 4, dan 5 kolom 2) semuanya ada angka 1.</p></li>
+<li><p>Kita ingin membuat elemen tersebut menjadi 0.</p></li>
+<li><p>Caranya dengan mengurangkan baris 2 dari baris 3, 4, dan 5.</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 15 \\
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 14 \\
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 12 \\
+0 &amp; 0 &amp; 1 &amp; 2 &amp; 2 &amp; 21 \\
+0 &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 26
+\end{array}
+\right]
+\end{split}\]</div>
+</section>
+<section id="langkah-3-nolkan-elemen-di-bawah-pivot-kolom-3">
+<h2>Langkah 3: nolkan elemen di bawah pivot kolom 3<a class="headerlink" href="#langkah-3-nolkan-elemen-di-bawah-pivot-kolom-3" title="Link to this heading">#</a></h2>
+<p>Operasi baris: <span class="math notranslate nohighlight">\(R_4 \leftarrow R_4 - R_3\)</span>, <span class="math notranslate nohighlight">\(R_5 \leftarrow R_5 - R_3\)</span></p>
+<p>Penjelasan:</p>
+<ol class="arabic simple">
+<li><p>Pivot ketiga ada di kolom 3 baris 3 (angka 1).</p></li>
+<li><p>Di bawahnya (baris 4 dan 5 kolom 3) ada angka 1.</p></li>
+<li><p>Kita ingin membuat elemen tersebut menjadi 0.</p></li>
+<li><p>Caranya dengan mengurangkan baris 3 dari baris 4 dan 5.</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 15 \\
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 14 \\
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 12 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 9 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 2 &amp; 14
+\end{array}
+\right]
+\end{split}\]</div>
+</section>
+<section id="langkah-4-nolkan-elemen-di-bawah-pivot-kolom-4">
+<h2>Langkah 4: nolkan elemen di bawah pivot kolom 4<a class="headerlink" href="#langkah-4-nolkan-elemen-di-bawah-pivot-kolom-4" title="Link to this heading">#</a></h2>
+<p>Operasi baris: <span class="math notranslate nohighlight">\(R_5 \leftarrow R_5 - R_4\)</span></p>
+<p>Penjelasan:</p>
+<ol class="arabic simple">
+<li><p>Pivot keempat ada di kolom 4 baris 4 (angka 1).</p></li>
+<li><p>Di bawahnya (baris 5 kolom 4) ada angka 1.</p></li>
+<li><p>Kita ingin membuat elemen tersebut menjadi 0.</p></li>
+<li><p>Caranya dengan mengurangkan baris 4 dari baris 5.</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 15 \\
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 14 \\
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 12 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 9 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 5
+\end{array}
+\right]
+\end{split}\]</div>
+<p>Setelah mendapatkan Matriks Eselon Baris, kita nolkan elemen di atas setiap pivot:</p>
+</section>
+<section id="langkah-5-nolkan-elemen-di-atas-pivot-kolom-5">
+<h2>Langkah 5: Nolkan elemen di atas pivot kolom 5<a class="headerlink" href="#langkah-5-nolkan-elemen-di-atas-pivot-kolom-5" title="Link to this heading">#</a></h2>
+<p>Operasi Baris :<span class="math notranslate nohighlight">\(R_4-R_5, R_3-R_5, R_2-R_5, R_1-R_5\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 10 \\
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 9 \\
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 7 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 4 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 5
+\end{array}
+\right]
+\end{split}\]</div>
+</section>
+<section id="langkah-6-nolkan-elemen-di-atas-pivot-kolom-4">
+<h2>Langkah 6: Nolkan elemen di atas pivot kolom 4<a class="headerlink" href="#langkah-6-nolkan-elemen-di-atas-pivot-kolom-4" title="Link to this heading">#</a></h2>
+<p>Operasi Baris :<span class="math notranslate nohighlight">\(R_3-R_4, R_2-R_4, R_1-R_4\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 6 \\
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 5 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 3 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 4 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 5
+\end{array}
+\right]
+\end{split}\]</div>
+</section>
+<section id="langkah-7-nolkan-elemen-di-atas-pivot-kolom-3">
+<h2>Langkah 7: Nolkan elemen di atas pivot kolom 3<a class="headerlink" href="#langkah-7-nolkan-elemen-di-atas-pivot-kolom-3" title="Link to this heading">#</a></h2>
+<p>Operasi Baris :<span class="math notranslate nohighlight">\(R_2-R_3, R_1-R_3\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 3 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 2 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 3 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 4 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 5
+\end{array}
+\right]
+\end{split}\]</div>
+</section>
+<section id="langkah-8-nolkan-elemen-di-atas-pivot-kolom-2">
+<h2>Langkah 8: Nolkan elemen di atas pivot kolom 2<a class="headerlink" href="#langkah-8-nolkan-elemen-di-atas-pivot-kolom-2" title="Link to this heading">#</a></h2>
+</section>
+<section id="matriks-eselon-baris-terreduksi">
+<h2>Matriks Eselon Baris Terreduksi:<a class="headerlink" href="#matriks-eselon-baris-terreduksi" title="Link to this heading">#</a></h2>
+<p>Operasi Baris: <span class="math notranslate nohighlight">\(R_1-R_2\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccccc|c}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 2 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 3 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 4 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 5
+\end{array}
+\right]
+\end{split}\]</div>
+</section>
+<section id="hasil-akhir-gauss-jordan">
+<h2>Hasil Akhir (Gauss-Jordan):<a class="headerlink" href="#hasil-akhir-gauss-jordan" title="Link to this heading">#</a></h2>
+<p>Dari matriks di atas, kita langsung mendapatkan:
+<span class="math notranslate nohighlight">\(x_1 = 1\)</span>, <span class="math notranslate nohighlight">\(x_2 = 2\)</span>, <span class="math notranslate nohighlight">\(x_3 = 3\)</span>, <span class="math notranslate nohighlight">\(x_4 = 4\)</span>, <span class="math notranslate nohighlight">\(x_5 = 5\)</span>.</p>
+</section>
+</section>
+<section id="sage-cell">
+<h1>SAGE CELL<a class="headerlink" href="#sage-cell" title="Link to this heading">#</a></h1>
+<p><img alt="original image" src="https://cdn.mathpix.com/snip/images/9NrdItnsMwNfPd79vcynviSdvuHconiQ6djYwgQqlRU.original.fullsize.png" />
+<img alt="original image" src="https://cdn.mathpix.com/snip/images/q3EyFKmPej_8BdP-1PUZDw2VKU1PGpULSioEuwmCiKI.original.fullsize.png" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="penyelesaian-determinan-dengan-metode-obe">
+<h1>Penyelesaian Determinan dengan Metode OBE<a class="headerlink" href="#penyelesaian-determinan-dengan-metode-obe" title="Link to this heading">#</a></h1>
+<p>Berdasarkan matriks augmented yang diberikan, kita akan mencari determinan dari matriks koefisien <span class="math notranslate nohighlight">\(A\)</span> (matriks <span class="math notranslate nohighlight">\(5 \times 5\)</span>).</p>
+<section id="matriks-awal-a">
+<h2>1. Matriks Awal (<span class="math notranslate nohighlight">\(A\)</span>)<a class="headerlink" href="#matriks-awal-a" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \begin{bmatrix} 
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+1 &amp; 2 &amp; 2 &amp; 2 &amp; 2 \\ 
+1 &amp; 2 &amp; 3 &amp; 3 &amp; 3 \\ 
+1 &amp; 2 &amp; 3 &amp; 4 &amp; 4 \\ 
+1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 
+\end{bmatrix}
+\end{split}\]</div>
+</section>
+<section id="tahapan-operasi-baris-elementer-obe">
+<h2>2. Tahapan Operasi Baris Elementer (OBE)<a class="headerlink" href="#tahapan-operasi-baris-elementer-obe" title="Link to this heading">#</a></h2>
+<p>Tujuannya adalah membentuk <strong>Matriks Segitiga Atas</strong> agar determinan dapat dihitung dengan mengalikan elemen diagonal utama.</p>
+<p><strong>Langkah 1:</strong> Kurangi baris ke-2, 3, 4, dan 5 dengan baris ke-1 (<span class="math notranslate nohighlight">\(R_n - R_1\)</span>).
+$<span class="math notranslate nohighlight">\(
+\xrightarrow{R_2-R_1, R_3-R_1, R_4-R_1, R_5-R_1} 
+\begin{bmatrix} 
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 1 &amp; 2 &amp; 2 &amp; 2 \\ 
+0 &amp; 1 &amp; 2 &amp; 3 &amp; 3 \\ 
+0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 
+\end{bmatrix}
+\)</span>$</p>
+<p><strong>Langkah 2:</strong> Kurangi baris ke-3, 4, dan 5 dengan baris ke-2 (<span class="math notranslate nohighlight">\(R_n - R_2\)</span>).
+$<span class="math notranslate nohighlight">\(
+\xrightarrow{R_3-R_2, R_4-R_2, R_5-R_2} 
+\begin{bmatrix} 
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 1 &amp; 2 &amp; 2 \\ 
+0 &amp; 0 &amp; 1 &amp; 2 &amp; 3 
+\end{bmatrix}
+\)</span>$</p>
+<p><strong>Langkah 3:</strong> Kurangi baris ke-4 dan 5 dengan baris ke-3 (<span class="math notranslate nohighlight">\(R_n - R_3\)</span>).
+$<span class="math notranslate nohighlight">\(
+\xrightarrow{R_4-R_3, R_5-R_3} 
+\begin{bmatrix} 
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 2 
+\end{bmatrix}
+\)</span>$</p>
+<p><strong>Langkah 4:</strong> Kurangi baris ke-5 dengan baris ke-4 (<span class="math notranslate nohighlight">\(R_5 - R_4\)</span>).
+$<span class="math notranslate nohighlight">\(
+\xrightarrow{R_5-R_4} 
+\begin{bmatrix} 
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\ 
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 
+\end{bmatrix}
+\)</span>$</p>
+</section>
+<section id="hasil-akhir-determinan">
+<h2>3. Hasil Akhir Determinan<a class="headerlink" href="#hasil-akhir-determinan" title="Link to this heading">#</a></h2>
+<p>Karena matriks sudah berbentuk segitiga atas, maka determinannya adalah hasil kali elemen diagonalnya:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{det}(A) = 1 \times 1 \times 1 \times 1 \times 1
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{det}(A) = 1
+\]</div>
+<blockquote>
+<div><p><strong>Kesimpulan:</strong> Nilai determinan dari matriks tersebut adalah <strong>1</strong>.</p>
+</div></blockquote>
+<p><img alt="alt text" src="_images/image-1.png" />
+<img alt="alt text" src="_images/image-2.png" /></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="matriks-adjoin-adj-a">
+<h1>Matriks Adjoin <span class="math notranslate nohighlight">\(adj(A)\)</span><a class="headerlink" href="#matriks-adjoin-adj-a" title="Link to this heading">#</a></h1>
+<p>Berdasarkan perhitungan, karena <span class="math notranslate nohighlight">\(\text{det}(A) = 1\)</span>, maka matriks Adjoin dari <span class="math notranslate nohighlight">\(A\)</span> adalah:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+adj(A) = \begin{bmatrix} 
+ 2 &amp; -1 &amp;  0 &amp;  0 &amp;  0 \\ 
+-1 &amp;  2 &amp; -1 &amp;  0 &amp;  0 \\ 
+ 0 &amp; -1 &amp;  2 &amp; -1 &amp;  0 \\ 
+ 0 &amp;  0 &amp; -1 &amp;  2 &amp; -1 \\ 
+ 0 &amp;  0 &amp;  0 &amp; -1 &amp;  1 
+\end{bmatrix}
+\end{split}\]</div>
+<section id="analisis-struktur-matriks">
+<h2>Analisis Struktur Matriks:<a class="headerlink" href="#analisis-struktur-matriks" title="Link to this heading">#</a></h2>
+<p>Matriks Adjoin ini memiliki pola khusus yang dihasilkan dari matriks koefisien berurutan:</p>
+<ol class="arabic simple">
+<li><p><strong>Diagonal Utama:</strong> Berisi angka <strong>2</strong>, kecuali elemen terakhir (<span class="math notranslate nohighlight">\(a_{55}\)</span>) yang bernilai <strong>1</strong>.</p></li>
+<li><p><strong>Sub-diagonal (Atas &amp; Bawah):</strong> Berisi angka <strong>-1</strong>.</p></li>
+<li><p><strong>Elemen Lainnya:</strong> Berisi angka <strong>0</strong>.</p></li>
+</ol>
+</section>
+<section id="pembuktian-properti">
+<h2>Pembuktian Properti:<a class="headerlink" href="#pembuktian-properti" title="Link to this heading">#</a></h2>
+<p>Sesuai dengan hukum matriks, jika kita mengalikan matriks awal <span class="math notranslate nohighlight">\(A\)</span> dengan <span class="math notranslate nohighlight">\(adj(A)\)</span>, maka hasilnya haruslah <span class="math notranslate nohighlight">\(\text{det}(A) \cdot I\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A \cdot adj(A) = 1 \cdot \begin{bmatrix} 
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\ 
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 
+\end{bmatrix}
+\end{split}\]</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tahapan-perhitungan-invers-matriks-a">
+<h1>Tahapan Perhitungan Invers Matriks <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#tahapan-perhitungan-invers-matriks-a" title="Link to this heading">#</a></h1>
+<p>Untuk matriks berukuran <span class="math notranslate nohighlight">\(5 \times 5\)</span>, kita menggunakan hubungan antara <strong>Determinan</strong> dan <strong>Adjoin</strong> untuk mencari Invers.</p>
+<section id="rumus-dasar">
+<h2>1. Rumus Dasar<a class="headerlink" href="#rumus-dasar" title="Link to this heading">#</a></h2>
+<p>Invers matriks <span class="math notranslate nohighlight">\(A\)</span> didefinisikan sebagai:
+$<span class="math notranslate nohighlight">\(A^{-1} = \frac{1}{\det(A)} \cdot \text{adj}(A)\)</span>$</p>
+<hr class="docutils" />
+</section>
+<section id="langkah-langkah-perhitungan">
+<h2>2. Langkah-Langkah Perhitungan<a class="headerlink" href="#langkah-langkah-perhitungan" title="Link to this heading">#</a></h2>
+<section id="langkah-1-menentukan-determinan">
+<h3><strong>Langkah 1: Menentukan Determinan</strong><a class="headerlink" href="#langkah-1-menentukan-determinan" title="Link to this heading">#</a></h3>
+<p>Berdasarkan metode Eliminasi Gauss (OBE) yang telah dilakukan sebelumnya, didapatkan:
+$<span class="math notranslate nohighlight">\(\det(A) = 1\)</span><span class="math notranslate nohighlight">\(
+Karena \)</span>\det(A) \neq 0$, maka matriks ini memiliki invers (non-singular).</p>
+</section>
+<section id="langkah-2-menentukan-matriks-adjoin">
+<h3><strong>Langkah 2: Menentukan Matriks Adjoin</strong><a class="headerlink" href="#langkah-2-menentukan-matriks-adjoin" title="Link to this heading">#</a></h3>
+<p>Matriks Adjoin (<span class="math notranslate nohighlight">\(adj(A)\)</span>) diperoleh dari transpose matriks kofaktor. Untuk matriks dengan pola urutan seperti pada gambar (<span class="math notranslate nohighlight">\(a_{ij} = \min(i,j)\)</span>), matriks adjoinnya adalah:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\text{adj}(A) = \begin{bmatrix} 
+ 2 &amp; -1 &amp;  0 &amp;  0 &amp;  0 \\ 
+-1 &amp;  2 &amp; -1 &amp;  0 &amp;  0 \\ 
+ 0 &amp; -1 &amp;  2 &amp; -1 &amp;  0 \\ 
+ 0 &amp;  0 &amp; -1 &amp;  2 &amp; -1 \\ 
+ 0 &amp;  0 &amp;  0 &amp; -1 &amp;  1 
+\end{bmatrix}
+\end{split}\]</div>
+</section>
+<section id="langkah-3-substitusi-ke-rumus-invers">
+<h3><strong>Langkah 3: Substitusi ke Rumus Invers</strong><a class="headerlink" href="#langkah-3-substitusi-ke-rumus-invers" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^{-1} = \frac{1}{1} \cdot \begin{bmatrix} 
+ 2 &amp; -1 &amp;  0 &amp;  0 &amp;  0 \\ 
+-1 &amp;  2 &amp; -1 &amp;  0 &amp;  0 \\ 
+ 0 &amp; -1 &amp;  2 &amp; -1 &amp;  0 \\ 
+ 0 &amp;  0 &amp; -1 &amp;  2 &amp; -1 \\ 
+ 0 &amp;  0 &amp;  0 &amp; -1 &amp;  1 
+\end{bmatrix}\end{split}\]</div>
+<hr class="docutils" />
+</section>
+</section>
+<section id="hasil-akhir-invers-a-1">
+<h2>3. Hasil Akhir Invers (<span class="math notranslate nohighlight">\(A^{-1}\)</span>)<a class="headerlink" href="#hasil-akhir-invers-a-1" title="Link to this heading">#</a></h2>
+<p>Karena determinannya adalah 1, maka hasil perkalian skalar tidak mengubah nilai elemen di dalam matriks:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A^{-1} = \begin{bmatrix} 
+ 2 &amp; -1 &amp;  0 &amp;  0 &amp;  0 \\ 
+-1 &amp;  2 &amp; -1 &amp;  0 &amp;  0 \\ 
+ 0 &amp; -1 &amp;  2 &amp; -1 &amp;  0 \\ 
+ 0 &amp;  0 &amp; -1 &amp;  2 &amp; -1 \\ 
+ 0 &amp;  0 &amp;  0 &amp; -1 &amp;  1 
+\end{bmatrix}
+\end{split}\]</div>
+<hr class="docutils" />
+</section>
+<section id="verifikasi-pembuktian">
+<h2>4. Verifikasi (Pembuktian)<a class="headerlink" href="#verifikasi-pembuktian" title="Link to this heading">#</a></h2>
+<p>Sebuah matriks dikatakan invers jika memenuhi syarat <span class="math notranslate nohighlight">\(A \cdot A^{-1} = I\)</span> (Matriks Identitas):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 2 &amp; 2 &amp; 2 \\ 1 &amp; 2 &amp; 3 &amp; 3 &amp; 3 \\ 1 &amp; 2 &amp; 3 &amp; 4 &amp; 4 \\ 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \end{bmatrix} 
+\cdot 
+\begin{bmatrix} 2 &amp; -1 &amp; 0 &amp; 0 &amp; 0 \\ -1 &amp; 2 &amp; -1 &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 2 &amp; -1 &amp; 0 \\ 0 &amp; 0 &amp; -1 &amp; 2 &amp; -1 \\ 0 &amp; 0 &amp; 0 &amp; -1 &amp; 1 \end{bmatrix} 
+= 
+\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \end{bmatrix}
+\end{split}\]</div>
+<p><img alt="alt text" src="_images/image-3.png" />
+<img alt="alt text" src="_images/image-4.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Nama : Fedro Aditya Ginting</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Materi2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">A. Determinan</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. SPL (Sistem Persamaan Linear)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-augmented">2. Matriks Augmented</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminasi-gauss-obe">3. Eliminasi Gauss (OBE)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-nolkan-elemen-di-bawah-pivot-kolom-1">Langkah 1: nolkan elemen di bawah pivot kolom 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-nolkan-elemen-di-bawah-pivot-kolom-2">Langkah 2: nolkan elemen di bawah pivot kolom 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-nolkan-elemen-di-bawah-pivot-kolom-3">Langkah 3: nolkan elemen di bawah pivot kolom 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-nolkan-elemen-di-bawah-pivot-kolom-4">Langkah 4: nolkan elemen di bawah pivot kolom 4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-5-nolkan-elemen-di-atas-pivot-kolom-5">Langkah 5: Nolkan elemen di atas pivot kolom 5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-6-nolkan-elemen-di-atas-pivot-kolom-4">Langkah 6: Nolkan elemen di atas pivot kolom 4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-7-nolkan-elemen-di-atas-pivot-kolom-3">Langkah 7: Nolkan elemen di atas pivot kolom 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-8-nolkan-elemen-di-atas-pivot-kolom-2">Langkah 8: Nolkan elemen di atas pivot kolom 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-eselon-baris-terreduksi">Matriks Eselon Baris Terreduksi:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-gauss-jordan">Hasil Akhir (Gauss-Jordan):</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sage-cell">SAGE CELL</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penyelesaian-determinan-dengan-metode-obe">Penyelesaian Determinan dengan Metode OBE</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-awal-a">1. Matriks Awal (<span class="math notranslate nohighlight">\(A\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-operasi-baris-elementer-obe">2. Tahapan Operasi Baris Elementer (OBE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-determinan">3. Hasil Akhir Determinan</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-adjoin-adj-a">Matriks Adjoin <span class="math notranslate nohighlight">\(adj(A)\)</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-struktur-matriks">Analisis Struktur Matriks:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembuktian-properti">Pembuktian Properti:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-perhitungan-invers-matriks-a">Tahapan Perhitungan Invers Matriks <span class="math notranslate nohighlight">\(A\)</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-dasar">1. Rumus Dasar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-perhitungan">2. Langkah-Langkah Perhitungan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-menentukan-determinan"><strong>Langkah 1: Menentukan Determinan</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-menentukan-matriks-adjoin"><strong>Langkah 2: Menentukan Matriks Adjoin</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-substitusi-ke-rumus-invers"><strong>Langkah 3: Substitusi ke Rumus Invers</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-invers-a-1">3. Hasil Akhir Invers (<span class="math notranslate nohighlight">\(A^{-1}\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-pembuktian">4. Verifikasi (Pembuktian)</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
