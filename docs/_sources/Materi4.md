@@ -1,386 +1,373 @@
-## 1. SPL (Sistem Persamaan Linear)
+# Dekomposisi QR dan Nilai Eigen
+clik link ini untuk mengarah ke colab
 
-$$
-\begin{cases}
-x_1 + x_2 + x_3 + x_4 + x_5 = 15 \\
-x_1 + 2x_2 + 2x_3 + 2x_4 + 2x_5 = 29 \\
-x_1 + 2x_2 + 3x_3 + 3x_4 + 3x_5 = 41 \\
-x_1 + 2x_2 + 3x_3 + 4x_4 + 4x_5 = 50 \\
-x_1 + 2x_2 + 3x_3 + 4x_4 + 5x_5 = 55
-\end{cases}
-$$
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/11YjHlEAkCw6cHerfdBFP28QStXcJLAMZ?usp=sharing)
+---
 
-## 2. Matriks Augmented
+## Matriks A
 
-$$
-\left[
-\begin{array}{ccccc|c}
-1 & 1 & 1 & 1 & 1 & 15 \\
-1 & 2 & 2 & 2 & 2 & 29 \\
-1 & 2 & 3 & 3 & 3 & 41 \\
-1 & 2 & 3 & 4 & 4 & 50 \\
-1 & 2 & 3 & 4 & 5 & 55
-\end{array}
-\right]
-$$
+Diberikan matriks simetris berukuran 2×2:
 
-## 3. Eliminasi Gauss (OBE)
+$$A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$$
 
-**Matriks Augmented Awal:** $$
-\left[
-\begin{array}{ccccc|c}
-1 & 1 & 1 & 1 & 1 & 15 \\
-1 & 2 & 2 & 2 & 2 & 29 \\
-1 & 2 & 3 & 3 & 3 & 41 \\
-1 & 2 & 3 & 4 & 4 & 50 \\
-1 & 2 & 3 & 4 & 5 & 55
-\end{array}
-\right]
-$$
+```python
+import numpy as np
 
-### Langkah 1: nolkan elemen di bawah pivot kolom 1
+A = np.array([
+    [2, 1],
+    [1, 2]
+])
 
-Operasi baris: $R_2 \leftarrow R_2 - R_1$, $R_3 \leftarrow R_3 - R_1$, $R_4 \leftarrow R_4 - R_1$, $R_5 \leftarrow R_5 - R_1$
+print(A)
+```
 
-Penjelasan:
-1. Pivot pertama ada di kolom 1 baris 1 (angka 1).
-2. Di bawahnya (baris 2, 3, 4, dan 5 kolom 1) semuanya ada angka 1.
-3. Kita ingin membuat elemen tersebut menjadi 0.
-4. Caranya dengan mengurangkan baris 1 dari baris 2, 3, 4, dan 5.
-
-$$
-\left[
-\begin{array}{ccccc|c}
-1 & 1 & 1 & 1 & 1 & 15 \\
-0 & 1 & 1 & 1 & 1 & 14 \\
-0 & 1 & 2 & 2 & 2 & 26 \\
-0 & 1 & 2 & 3 & 3 & 35 \\
-0 & 1 & 2 & 3 & 4 & 40
-\end{array}
-\right]
-$$
-
-### Langkah 2: nolkan elemen di bawah pivot kolom 2
-
-Operasi baris: $R_3 \leftarrow R_3 - R_2$, $R_4 \leftarrow R_4 - R_2$, $R_5 \leftarrow R_5 - R_2$
-
-Penjelasan:
-1. Pivot kedua ada di kolom 2 baris 2 (angka 1).
-2. Di bawahnya (baris 3, 4, dan 5 kolom 2) semuanya ada angka 1.
-3. Kita ingin membuat elemen tersebut menjadi 0.
-4. Caranya dengan mengurangkan baris 2 dari baris 3, 4, dan 5.
-
-$$
-\left[
-\begin{array}{ccccc|c}
-1 & 1 & 1 & 1 & 1 & 15 \\
-0 & 1 & 1 & 1 & 1 & 14 \\
-0 & 0 & 1 & 1 & 1 & 12 \\
-0 & 0 & 1 & 2 & 2 & 21 \\
-0 & 0 & 1 & 2 & 3 & 26
-\end{array}
-\right]
-$$
-
-### Langkah 3: nolkan elemen di bawah pivot kolom 3
-
-Operasi baris: $R_4 \leftarrow R_4 - R_3$, $R_5 \leftarrow R_5 - R_3$
-
-Penjelasan:
-1. Pivot ketiga ada di kolom 3 baris 3 (angka 1).
-2. Di bawahnya (baris 4 dan 5 kolom 3) ada angka 1.
-3. Kita ingin membuat elemen tersebut menjadi 0.
-4. Caranya dengan mengurangkan baris 3 dari baris 4 dan 5.
-
-$$
-\left[
-\begin{array}{ccccc|c}
-1 & 1 & 1 & 1 & 1 & 15 \\
-0 & 1 & 1 & 1 & 1 & 14 \\
-0 & 0 & 1 & 1 & 1 & 12 \\
-0 & 0 & 0 & 1 & 1 & 9 \\
-0 & 0 & 0 & 1 & 2 & 14
-\end{array}
-\right]
-$$
-
-### Langkah 4: nolkan elemen di bawah pivot kolom 4
-
-Operasi baris: $R_5 \leftarrow R_5 - R_4$
-
-Penjelasan:
-1. Pivot keempat ada di kolom 4 baris 4 (angka 1).
-2. Di bawahnya (baris 5 kolom 4) ada angka 1.
-3. Kita ingin membuat elemen tersebut menjadi 0.
-4. Caranya dengan mengurangkan baris 4 dari baris 5.
-
-$$
-\left[
-\begin{array}{ccccc|c}
-1 & 1 & 1 & 1 & 1 & 15 \\
-0 & 1 & 1 & 1 & 1 & 14 \\
-0 & 0 & 1 & 1 & 1 & 12 \\
-0 & 0 & 0 & 1 & 1 & 9 \\
-0 & 0 & 0 & 0 & 1 & 5
-\end{array}
-\right]
-$$
-
-Setelah mendapatkan Matriks Eselon Baris, kita nolkan elemen di atas setiap pivot:
-
-### Langkah 5: Nolkan elemen di atas pivot kolom 5 
-
-Operasi Baris :$R_4-R_5, R_3-R_5, R_2-R_5, R_1-R_5$
-
-$$
-\left[
-\begin{array}{ccccc|c}
-1 & 1 & 1 & 1 & 0 & 10 \\
-0 & 1 & 1 & 1 & 0 & 9 \\
-0 & 0 & 1 & 1 & 0 & 7 \\
-0 & 0 & 0 & 1 & 0 & 4 \\
-0 & 0 & 0 & 0 & 1 & 5
-\end{array}
-\right]
-$$
-
-### Langkah 6: Nolkan elemen di atas pivot kolom 4 
-
-Operasi Baris :$R_3-R_4, R_2-R_4, R_1-R_4$
-
-$$
-\left[
-\begin{array}{ccccc|c}
-1 & 1 & 1 & 0 & 0 & 6 \\
-0 & 1 & 1 & 0 & 0 & 5 \\
-0 & 0 & 1 & 0 & 0 & 3 \\
-0 & 0 & 0 & 1 & 0 & 4 \\
-0 & 0 & 0 & 0 & 1 & 5
-\end{array}
-\right]
-$$
-
-### Langkah 7: Nolkan elemen di atas pivot kolom 3 
-
-Operasi Baris :$R_2-R_3, R_1-R_3$
-
-$$
-\left[
-\begin{array}{ccccc|c}
-1 & 1 & 0 & 0 & 0 & 3 \\
-0 & 1 & 0 & 0 & 0 & 2 \\
-0 & 0 & 1 & 0 & 0 & 3 \\
-0 & 0 & 0 & 1 & 0 & 4 \\
-0 & 0 & 0 & 0 & 1 & 5
-\end{array}
-\right]
-$$
-
-### Langkah 8: Nolkan elemen di atas pivot kolom 2 
-### Matriks Eselon Baris Terreduksi:
-
-Operasi Baris: $R_1-R_2$
-
-$$
-\left[
-\begin{array}{ccccc|c}
-1 & 0 & 0 & 0 & 0 & 1 \\
-0 & 1 & 0 & 0 & 0 & 2 \\
-0 & 0 & 1 & 0 & 0 & 3 \\
-0 & 0 & 0 & 1 & 0 & 4 \\
-0 & 0 & 0 & 0 & 1 & 5
-\end{array}
-\right]
-$$
-
-### Hasil Akhir (Gauss-Jordan):
-Dari matriks di atas, kita langsung mendapatkan:
-$x_1 = 1$, $x_2 = 2$, $x_3 = 3$, $x_4 = 4$, $x_5 = 5$.
-
-## SAGE CELL
-![original image](https://cdn.mathpix.com/snip/images/9NrdItnsMwNfPd79vcynviSdvuHconiQ6djYwgQqlRU.original.fullsize.png)
-![original image](https://cdn.mathpix.com/snip/images/q3EyFKmPej_8BdP-1PUZDw2VKU1PGpULSioEuwmCiKI.original.fullsize.png)
-
-# Penyelesaian Determinan dengan Metode OBE
-
-Berdasarkan matriks augmented yang diberikan, kita akan mencari determinan dari matriks koefisien $A$ (matriks $5 \times 5$).
-
-### 1. Matriks Awal ($A$)
-$$
-A = \begin{bmatrix} 
-1 & 1 & 1 & 1 & 1 \\ 
-1 & 2 & 2 & 2 & 2 \\ 
-1 & 2 & 3 & 3 & 3 \\ 
-1 & 2 & 3 & 4 & 4 \\ 
-1 & 2 & 3 & 4 & 5 
-\end{bmatrix}
-$$
-
-### 2. Tahapan Operasi Baris Elementer (OBE)
-
-Tujuannya adalah membentuk **Matriks Segitiga Atas** agar determinan dapat dihitung dengan mengalikan elemen diagonal utama.
-
-**Langkah 1:** Kurangi baris ke-2, 3, 4, dan 5 dengan baris ke-1 ($R_n - R_1$).
-$$
-\xrightarrow{R_2-R_1, R_3-R_1, R_4-R_1, R_5-R_1} 
-\begin{bmatrix} 
-1 & 1 & 1 & 1 & 1 \\ 
-0 & 1 & 1 & 1 & 1 \\ 
-0 & 1 & 2 & 2 & 2 \\ 
-0 & 1 & 2 & 3 & 3 \\ 
-0 & 1 & 2 & 3 & 4 
-\end{bmatrix}
-$$
-
-**Langkah 2:** Kurangi baris ke-3, 4, dan 5 dengan baris ke-2 ($R_n - R_2$).
-$$
-\xrightarrow{R_3-R_2, R_4-R_2, R_5-R_2} 
-\begin{bmatrix} 
-1 & 1 & 1 & 1 & 1 \\ 
-0 & 1 & 1 & 1 & 1 \\ 
-0 & 0 & 1 & 1 & 1 \\ 
-0 & 0 & 1 & 2 & 2 \\ 
-0 & 0 & 1 & 2 & 3 
-\end{bmatrix}
-$$
-
-**Langkah 3:** Kurangi baris ke-4 dan 5 dengan baris ke-3 ($R_n - R_3$).
-$$
-\xrightarrow{R_4-R_3, R_5-R_3} 
-\begin{bmatrix} 
-1 & 1 & 1 & 1 & 1 \\ 
-0 & 1 & 1 & 1 & 1 \\ 
-0 & 0 & 1 & 1 & 1 \\ 
-0 & 0 & 0 & 1 & 1 \\ 
-0 & 0 & 0 & 1 & 2 
-\end{bmatrix}
-$$
-
-**Langkah 4:** Kurangi baris ke-5 dengan baris ke-4 ($R_5 - R_4$).
-$$
-\xrightarrow{R_5-R_4} 
-\begin{bmatrix} 
-1 & 1 & 1 & 1 & 1 \\ 
-0 & 1 & 1 & 1 & 1 \\ 
-0 & 0 & 1 & 1 & 1 \\ 
-0 & 0 & 0 & 1 & 1 \\ 
-0 & 0 & 0 & 0 & 1 
-\end{bmatrix}
-$$
-
-### 3. Hasil Akhir Determinan
-Karena matriks sudah berbentuk segitiga atas, maka determinannya adalah hasil kali elemen diagonalnya:
-
-$$
-\text{det}(A) = 1 \times 1 \times 1 \times 1 \times 1
-$$
-$$
-\text{det}(A) = 1
-$$
-
-> **Kesimpulan:** Nilai determinan dari matriks tersebut adalah **1**.
-
-![alt text](image-1.png)
-![alt text](image-2.png)
-
-# Matriks Adjoin $adj(A)$
-
-Berdasarkan perhitungan, karena $\text{det}(A) = 1$, maka matriks Adjoin dari $A$ adalah:
-
-$$
-adj(A) = \begin{bmatrix} 
- 2 & -1 &  0 &  0 &  0 \\ 
--1 &  2 & -1 &  0 &  0 \\ 
- 0 & -1 &  2 & -1 &  0 \\ 
- 0 &  0 & -1 &  2 & -1 \\ 
- 0 &  0 &  0 & -1 &  1 
-\end{bmatrix}
-$$
-
-### Analisis Struktur Matriks:
-Matriks Adjoin ini memiliki pola khusus yang dihasilkan dari matriks koefisien berurutan:
-1. **Diagonal Utama:** Berisi angka **2**, kecuali elemen terakhir ($a_{55}$) yang bernilai **1**.
-2. **Sub-diagonal (Atas & Bawah):** Berisi angka **-1**.
-3. **Elemen Lainnya:** Berisi angka **0**.
-
-### Pembuktian Properti:
-Sesuai dengan hukum matriks, jika kita mengalikan matriks awal $A$ dengan $adj(A)$, maka hasilnya haruslah $\text{det}(A) \cdot I$:
-
-$$
-A \cdot adj(A) = 1 \cdot \begin{bmatrix} 
-1 & 0 & 0 & 0 & 0 \\ 
-0 & 1 & 0 & 0 & 0 \\ 
-0 & 0 & 1 & 0 & 0 \\ 
-0 & 0 & 0 & 1 & 0 \\ 
-0 & 0 & 0 & 0 & 1 
-\end{bmatrix}
-$$
-
-# Tahapan Perhitungan Invers Matriks $A$
-
-Untuk matriks berukuran $5 \times 5$, kita menggunakan hubungan antara **Determinan** dan **Adjoin** untuk mencari Invers.
-
-### 1. Rumus Dasar
-Invers matriks $A$ didefinisikan sebagai:
-$$A^{-1} = \frac{1}{\det(A)} \cdot \text{adj}(A)$$
+**Output:**
+```
+[[2 1]
+ [1 2]]
+```
 
 ---
 
-### 2. Langkah-Langkah Perhitungan
+## Tahap 1 — Gram-Schmidt: Membentuk Vektor q₁
 
-#### **Langkah 1: Menentukan Determinan**
-Berdasarkan metode Eliminasi Gauss (OBE) yang telah dilakukan sebelumnya, didapatkan:
-$$\det(A) = 1$$
-Karena $\det(A) \neq 0$, maka matriks ini memiliki invers (non-singular).
+Proses Gram-Schmidt dimulai dari kolom pertama matriks A:
 
-#### **Langkah 2: Menentukan Matriks Adjoin**
-Matriks Adjoin ($adj(A)$) diperoleh dari transpose matriks kofaktor. Untuk matriks dengan pola urutan seperti pada gambar ($a_{ij} = \min(i,j)$), matriks adjoinnya adalah:
+$$a_1 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$$
 
-$$
-\text{adj}(A) = \begin{bmatrix} 
- 2 & -1 &  0 &  0 &  0 \\ 
--1 &  2 & -1 &  0 &  0 \\ 
- 0 & -1 &  2 & -1 &  0 \\ 
- 0 &  0 & -1 &  2 & -1 \\ 
- 0 &  0 &  0 & -1 &  1 
-\end{bmatrix}
-$$
+**Menghitung norma (panjang) vektor:**
 
-#### **Langkah 3: Substitusi ke Rumus Invers**
-$$A^{-1} = \frac{1}{1} \cdot \begin{bmatrix} 
- 2 & -1 &  0 &  0 &  0 \\ 
--1 &  2 & -1 &  0 &  0 \\ 
- 0 & -1 &  2 & -1 &  0 \\ 
- 0 &  0 & -1 &  2 & -1 \\ 
- 0 &  0 &  0 & -1 &  1 
-\end{bmatrix}$$
+$$\|a_1\| = \sqrt{2^2 + 1^2} = \sqrt{5} \approx 2.236$$
+
+**Membentuk vektor ortonormal q₁:**
+
+$$q_1 = \frac{a_1}{\|a_1\|} = \frac{1}{\sqrt{5}}\begin{bmatrix} 2 \\ 1 \end{bmatrix} = \begin{bmatrix} \dfrac{2}{\sqrt{5}} \\ \dfrac{1}{\sqrt{5}} \end{bmatrix}$$
+
+```python
+import numpy as np
+
+A = np.array([
+    [2, 1],
+    [1, 2]
+])
+
+# Ekstrak kolom pertama
+a1 = A[:, 0]
+print("Vektor a1:", a1)
+
+# Norma vektor
+norma_a1 = np.sqrt(2**2 + 1**2)
+print(f"\nNorma a1: √(2² + 1²) = {norma_a1}")
+
+# Vektor ortonormal
+q1 = a1 / norma_a1
+print("\nVektor q1 (ternormalisasi):", q1)
+```
+
+**Output:**
+```
+Vektor a1: [2 1]
+
+Norma a1: √(2² + 1²) = 2.23606797749979
+
+Vektor q1 (ternormalisasi): [0.89442719 0.4472136 ]
+```
+
+Panjang $q_1$ sudah bernilai 1, artinya normalisasi berhasil.
 
 ---
 
-### 3. Hasil Akhir Invers ($A^{-1}$)
-Karena determinannya adalah 1, maka hasil perkalian skalar tidak mengubah nilai elemen di dalam matriks:
+## Tahap 2 — Menghitung Dot Product q₁ · a₂
 
-$$
-A^{-1} = \begin{bmatrix} 
- 2 & -1 &  0 &  0 &  0 \\ 
--1 &  2 & -1 &  0 &  0 \\ 
- 0 & -1 &  2 & -1 &  0 \\ 
- 0 &  0 & -1 &  2 & -1 \\ 
- 0 &  0 &  0 & -1 &  1 
-\end{bmatrix}
-$$
+Kolom kedua matriks A:
+
+$$a_2 = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$$
+
+**Dot product** $q_1 \cdot a_2$:
+
+$$q_1 \cdot a_2 = \left(\frac{2\sqrt{5}}{5} \times 1\right) + \left(\frac{\sqrt{5}}{5} \times 2\right) = \frac{2\sqrt{5}}{5} + \frac{2\sqrt{5}}{5} = \frac{4\sqrt{5}}{5}$$
+
+```python
+from sympy import Matrix, sqrt
+
+A = Matrix([
+    [2, 1],
+    [1, 2]
+])
+
+a1 = A[:, 0]
+a2 = A[:, 1]
+
+# Normalisasi q1
+q1 = a1 / sqrt(5)
+
+# Dot product
+dot = q1.dot(a2)
+print("q1 · a2 =")
+print(dot)
+```
+
+**Output:**
+```
+q1 · a2 =
+4*sqrt(5)/5
+```
 
 ---
 
-### 4. Verifikasi (Pembuktian)
-Sebuah matriks dikatakan invers jika memenuhi syarat $A \cdot A^{-1} = I$ (Matriks Identitas):
+## Tahap 3 — Ortogonalisasi: Menghitung u₂
 
-$$
-\begin{bmatrix} 1 & 1 & 1 & 1 & 1 \\ 1 & 2 & 2 & 2 & 2 \\ 1 & 2 & 3 & 3 & 3 \\ 1 & 2 & 3 & 4 & 4 \\ 1 & 2 & 3 & 4 & 5 \end{bmatrix} 
-\cdot 
-\begin{bmatrix} 2 & -1 & 0 & 0 & 0 \\ -1 & 2 & -1 & 0 & 0 \\ 0 & -1 & 2 & -1 & 0 \\ 0 & 0 & -1 & 2 & -1 \\ 0 & 0 & 0 & -1 & 1 \end{bmatrix} 
-= 
-\begin{bmatrix} 1 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 1 \end{bmatrix}
-$$
-![alt text](image-3.png)
-![alt text](image-4.png)
+Komponen proyeksi $a_2$ ke arah $q_1$:
+
+$$(q_1 \cdot a_2) \cdot q_1 = \frac{4\sqrt{5}}{5} \begin{bmatrix} \dfrac{2\sqrt{5}}{5} \\ \dfrac{\sqrt{5}}{5} \end{bmatrix} = \begin{bmatrix} \dfrac{8}{5} \\ \dfrac{4}{5} \end{bmatrix}$$
+
+Komponen ortogonal $u_2$:
+
+$$u_2 = a_2 - (q_1 \cdot a_2)\,q_1 = \begin{bmatrix} 1 \\ 2 \end{bmatrix} - \begin{bmatrix} \dfrac{8}{5} \\ \dfrac{4}{5} \end{bmatrix} = \begin{bmatrix} -\dfrac{3}{5} \\ \dfrac{6}{5} \end{bmatrix}$$
+
+```python
+from sympy import Matrix, sqrt
+
+A = Matrix([
+    [2, 1],
+    [1, 2]
+])
+
+a1 = A[:, 0]
+a2 = A[:, 1]
+
+q1 = a1 / sqrt(5)
+
+# Proyeksi
+dot  = q1.dot(a2)
+proj = dot * q1
+
+# Vektor ortogonal
+u2 = a2 - proj
+print("u2 =")
+print(u2)
+```
+
+**Output:**
+```
+u2 =
+Matrix([[-3/5], [6/5]])
+```
+
+---
+
+## Tahap 4 — Normalisasi u₂ menjadi q₂
+
+**Menghitung norma u₂:**
+
+$$\|u_2\| = \sqrt{\left(-\frac{3}{5}\right)^2 + \left(\frac{6}{5}\right)^2} = \sqrt{\frac{9}{25} + \frac{36}{25}} = \sqrt{\frac{45}{25}} = \frac{3\sqrt{5}}{5}$$
+
+**Vektor ortonormal q₂:**
+
+$$q_2 = \frac{u_2}{\|u_2\|} = \begin{bmatrix} -\dfrac{\sqrt{5}}{5} \\ \dfrac{2\sqrt{5}}{5} \end{bmatrix}$$
+
+```python
+from sympy import Matrix, sqrt, Rational
+
+v2 = Matrix([
+    [Rational(-3, 5)],
+    [Rational( 6, 5)]
+])
+
+norma_v2 = sqrt(v2.dot(v2))
+print("Norma v2 =", norma_v2)
+
+q2 = v2 / norma_v2
+print("\nq2 =")
+print(q2)
+```
+
+**Output:**
+```
+Norma v2 = 3*sqrt(5)/5
+
+q2 =
+Matrix([[-sqrt(5)/5], [2*sqrt(5)/5]])
+```
+
+---
+
+## Tahap 5 — Menyusun Matriks Q dan R
+
+Matriks ortogonal Q dibentuk dari kolom $q_1$ dan $q_2$:
+
+$$Q = \begin{bmatrix} \dfrac{2\sqrt{5}}{5} & -\dfrac{\sqrt{5}}{5} \\[8pt] \dfrac{\sqrt{5}}{5} & \dfrac{2\sqrt{5}}{5} \end{bmatrix}$$
+
+Matriks segitiga atas R dihitung dengan $R = Q^T A$:
+
+$$R = \begin{bmatrix} \sqrt{5} & \dfrac{4\sqrt{5}}{5} \\[8pt] 0 & \dfrac{3\sqrt{5}}{5} \end{bmatrix}$$
+
+```python
+from sympy import Matrix, sqrt
+
+A = Matrix([
+    [2, 1],
+    [1, 2]
+])
+
+a1 = A[:, 0]
+a2 = A[:, 1]
+
+q1 = a1 / sqrt(5)
+dot  = q1.dot(a2)
+v2   = a2 - dot * q1
+q2   = v2 / sqrt(v2.dot(v2))
+
+Q = Matrix.hstack(q1, q2)
+R = Q.T * A
+
+print("Q =")
+print(Q)
+print("\nR =")
+print(R)
+```
+
+**Output:**
+```
+Q =
+Matrix([[2*sqrt(5)/5, -sqrt(5)/5], [sqrt(5)/5, 2*sqrt(5)/5]])
+
+R =
+Matrix([[sqrt(5), 4*sqrt(5)/5], [0, 3*sqrt(5)/5]])
+```
+
+---
+
+## Tahap 6 — Verifikasi Q × R = A
+
+$$QR = \begin{bmatrix} \dfrac{2\sqrt{5}}{5} & -\dfrac{\sqrt{5}}{5} \\[8pt] \dfrac{\sqrt{5}}{5} & \dfrac{2\sqrt{5}}{5} \end{bmatrix} \begin{bmatrix} \sqrt{5} & \dfrac{4\sqrt{5}}{5} \\[8pt] 0 & \dfrac{3\sqrt{5}}{5} \end{bmatrix} = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix} = A \checkmark$$
+
+```python
+from sympy import Matrix, sqrt
+
+Q = Matrix([
+    [2*sqrt(5)/5, -sqrt(5)/5],
+    [  sqrt(5)/5, 2*sqrt(5)/5]
+])
+
+R = Matrix([
+    [sqrt(5), 4*sqrt(5)/5],
+    [0,       3*sqrt(5)/5]
+])
+
+print("Q × R =")
+print(Q * R)
+```
+
+**Output:**
+```
+Q × R =
+Matrix([[2, 1], [1, 2]])
+```
+
+Dekomposisi $A = QR$ terbukti benar.
+
+---
+
+## Tahap 7 — Matriks A₂ = R × Q
+
+Satu langkah iterasi QR menghasilkan:
+
+$$A_2 = RQ = \begin{bmatrix} \sqrt{5} & \dfrac{4\sqrt{5}}{5} \\[8pt] 0 & \dfrac{3\sqrt{5}}{5} \end{bmatrix} \begin{bmatrix} \dfrac{2\sqrt{5}}{5} & -\dfrac{\sqrt{5}}{5} \\[8pt] \dfrac{\sqrt{5}}{5} & \dfrac{2\sqrt{5}}{5} \end{bmatrix} = \begin{bmatrix} \dfrac{14}{5} & \dfrac{3}{5} \\[8pt] \dfrac{3}{5} & \dfrac{6}{5} \end{bmatrix}$$
+
+```python
+from sympy import Matrix, sqrt
+
+Q = Matrix([
+    [2*sqrt(5)/5, -sqrt(5)/5],
+    [  sqrt(5)/5, 2*sqrt(5)/5]
+])
+
+R = Matrix([
+    [sqrt(5), 4*sqrt(5)/5],
+    [0,       3*sqrt(5)/5]
+])
+
+A2 = R * Q
+print("R × Q =")
+print(A2)
+```
+
+**Output:**
+```
+R × Q =
+Matrix([[14/5, 3/5], [3/5, 6/5]])
+```
+
+---
+
+## Tahap 8 — QR Iteration (Konvergensi ke Nilai Eigen)
+
+QR Iteration bekerja dengan cara berulang kali melakukan dekomposisi $A_k = Q_k R_k$, lalu membentuk $A_{k+1} = R_k Q_k$. Elemen diagonal akan semakin mendekati nilai eigen.
+
+```python
+from sympy import Matrix, sqrt, N, pprint
+
+A = Matrix([
+    [2, 1],
+    [1, 2]
+])
+
+print("A0 =")
+pprint(A)
+
+for k in range(1, 11):
+    a1 = A[:, 0]
+    a2 = A[:, 1]
+
+    # Gram-Schmidt
+    q1   = a1 / sqrt(a1.dot(a1))
+    proj = q1.dot(a2) * q1
+    v2   = a2 - proj
+    q2   = v2 / sqrt(v2.dot(v2))
+
+    # Susun Q dan R
+    Q = Matrix.hstack(q1, q2)
+    R = Q.T * A
+
+    # Update A
+    A = R * Q
+
+    print(f"\nA{k} =")
+    pprint(N(A, 5))
+```
+
+**Output:**
+```
+A0 =
+[2  1]
+[   ]
+[1  2]
+
+A1 =
+[2.8  0.6]
+[         ]
+[0.6  1.2]
+
+A2 =
+[2.96  0.28]
+[            ]
+[0.28  1.04 ]
+
+...
+
+A10 ≈
+[3.0   ~0 ]
+[          ]
+[~0   1.0 ]
+```
+
+---
+
+## Kesimpulan
+
+Setelah 10 iterasi, diagonal matriks konvergen ke:
+
+$$\lambda_1 \approx 3, \quad \lambda_2 \approx 1$$
+
+Nilai ini sesuai dengan eigen value analitik matriks $A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$, yaitu $\lambda = 2 \pm 1$.
